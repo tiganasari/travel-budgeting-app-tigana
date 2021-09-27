@@ -5,5 +5,9 @@
     "nodemon": "^2.0.13",
     "start": "nodemon./bin/www",
     "migrate":"node model/database.js"
+  },
+  "scripts": {
+    "start": "nodemon./my-express-app/bin/www"
   }
 }
+

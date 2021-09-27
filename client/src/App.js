@@ -1,7 +1,29 @@
 import logo from './logo.svg';
 import './App.css';
+import React, { useEffect } from "react";
 
 function App() {
+
+const getUsers = () => {
+  console.log('hi')
+    fetch("/users")
+      .then((response) => response.json())
+      .then(json => {
+        // upon success, update tasks
+        console.log(json);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+
+useEffect(() => {
+    console.log("goodbye")
+    getUsers();
+  }, []);
+ 
+
   return (
     <div className="App">
       <header className="App-header">
