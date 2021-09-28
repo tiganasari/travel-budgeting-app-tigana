@@ -1,16 +1,18 @@
-import logo from './logo.svg';
 import './App.css';
-import React, { useEffect } from "react";
+import React, { useEffect, useState} from "react";
 
 function App() {
 
+const [wallets, setWallets] = useState([]); 
+
 const getUsers = () => {
-  console.log('hi')
-    fetch("/users")
+  // console.log('hi')
+    fetch("/wallets")
       .then((response) => response.json())
       .then(json => {
         // upon success, update tasks
         console.log(json);
+        setWallets(json);
       })
       .catch((error) => {
         console.log(error);
@@ -19,27 +21,14 @@ const getUsers = () => {
 
 
 useEffect(() => {
-    console.log("goodbye")
+    // console.log("goodbye")
     getUsers();
   }, []);
  
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1> TRAVEL EXPENSE TRACKER APP</h1>
     </div>
   );
 }
