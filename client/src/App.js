@@ -5,6 +5,7 @@ function App() {
 
 const [wallets, setWallets] = useState([]); 
 
+
 const getUsers = () => {
   // console.log('hi')
     fetch("/wallets")
