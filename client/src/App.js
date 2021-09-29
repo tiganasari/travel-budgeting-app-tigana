@@ -7,6 +7,7 @@ const [wallets, setWallets] = useState([]);
 const [expenses, setExpenses] = useState([]);
 const [currency, setCurrency] = useState(0);
 const [error, setError] = useState("");
+const [result, setResult] = useState([])
 
 const getWallets = () => {
   // console.log('hi')
@@ -37,8 +38,10 @@ const getWallets = () => {
   };
 
   const onSelectItem = (id) => {
-    let result = expenses.filter(expense => expense.id = id)
-    console.log(result)
+    // console.log(id);
+    let result = expenses.filter(expense => expense.id === id)
+    setResult(result);
+    console.log(result[0].category);
   }
   //try out static external API call - USD to GBP
 async function getCurrency(currency) {
@@ -51,7 +54,7 @@ try {
     let currencyResult = await response.json();
     let currency = currencyResult["Realtime Currency Exchange Rate"]["5. Exchange Rate"];
     setCurrency(currency)
-    // console.log(currency["Realtime Currency Exchange Rate"][ "1. From_Currency Code"])
+    console.log(currency)
   } else {
     setError ("server error")
   }
@@ -64,7 +67,7 @@ useEffect(() => {
     // console.log("goodbye")
     getWallets();
     getExpenses();
-    // getCurrency();
+    getCurrency();
   }, []);
  
 
@@ -79,15 +82,16 @@ useEffect(() => {
       <h2>Transactions</h2>
       <ul>
         {expenses.map((i) => 
-        <li id={i.id} onClick={(e) => onSelectItem(i.id)}> {i.category} £{i.amount}</li>)}
+        <li key={i.id} onClick={() => onSelectItem(i.id)}> {i.category} £{i.amount}</li>)}
       </ul>
 
         <h2>Live exchange rates</h2>
-        {/* 1 USD = {currency} GBP */}
+        1 USD = {currency} GBP
 
         <h2>Transaction Details</h2>
-       <p> {onSelectItem}</p>
-
+      {/* <p>{result[0].date} {result[0].category} GBP{(result[0].amount).toFixed(2)} | USD{(result[0].amount* currency).toFixed(2)} </p> */}
+       
+     {result[0].date} {result[0].category} GBP{(result[0].amount).toFixed(2)} | USD{(result[0].amount* currency).toFixed(2)}
     </div>
   );
 }
