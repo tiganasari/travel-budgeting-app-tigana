@@ -67,6 +67,7 @@ const getWallets = () => {
   }
   const handleInputChangeWallet = (event) => {
     let { name, value } = event.target;
+    console.log( value);
     setWalletData({ ... walletData,  [name]: value});
   }
 
@@ -156,15 +157,19 @@ useEffect(() => {
   return (
     <div className="App">
       <h1> TRAVEL EXPENSE TRACKER APP</h1>
-      <h2>Available wallets</h2>
+      <div className="hello">
+         <h2>Available wallets</h2>
       <ul>
         {wallets.length > 0 && wallets.map((i) => 
         <li id={i.id}> {i.city} | {i.currency} to {i.native_currency} |  wallet sum {i.sum}</li>)}
       </ul>
+      </div>
+      
+     
       <h2>Transactions</h2>
       <ul>
         {expenses.map((i) => 
-        <li key={i.id} onClick={() => onSelectItem(i.id)}> {i.date} {i.category} | {i.notes} £{i.amount.toFixed(2)} | $000
+        <li key={i.id} onClick={() => onSelectItem(i.id)}> {i.date} {i.category} | {i.notes} £{i.amount.toFixed(2)} | $ {(i.amount / currency).toFixed(2)} 
          {/* {(i.amount) / currency}   */}
          </li>)}
       </ul>
@@ -225,7 +230,14 @@ useEffect(() => {
              <label>New Wallet</label>
             <input type="text" onChange={(e) => handleInputChangeWallet(e)} name="city" value= {walletData.city} placeholder="city"/> 
 
-            <input type="text" onChange={(e) => handleInputChangeWallet(e)} name="currency" value= {walletData.currency} placeholder="currency"/> 
+            {/* <input type="text" onChange={(e) => handleInputChangeWallet(e)} name="currency" value= {walletData.currency} placeholder="currency"/>  */}
+
+             <select id="currency" name="currency" onChange={(e) => handleInputChangeWallet(e)}> 
+            <option value={"GBP"}>Poundsterling</option>
+            <option value={"EUR"}>Euros</option>
+            <option value={"USD"}>Dollars</option>
+            <option value={"IDR"}>Rupiah</option>
+            </select>
 
               <input type="text" onChange={(e) => handleInputChangeWallet(e)} name="native_currency" value= {walletData.native_currency} placeholder="native currency"/> 
               
