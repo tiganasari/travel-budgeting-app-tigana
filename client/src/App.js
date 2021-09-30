@@ -7,7 +7,9 @@ const [wallets, setWallets] = useState([]);
 const [expenses, setExpenses] = useState([]);
 const [currency, setCurrency] = useState(0);
 const [error, setError] = useState("");
-const [result, setResult] = useState([])
+const [result, setResult] = useState([]);
+const formInitialState = { date: "", category: " ", amount: "", amount_native_currency: "", notes: "", wallet_id: "",};
+const [formData, setFormData] = useState(formInitialState)
 
 const getWallets = () => {
   // console.log('hi')
@@ -43,6 +45,31 @@ const getWallets = () => {
     setResult(result);
     console.log(result[0].category);
   }
+
+  const handleInputChange = (event) => {
+    let { name, value } = event.target;
+    setFormData({ ... formData,  [name]: value});
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    addExpense(formData.date, formData.category,formData.amount,formData.amount_native_currency, formData.notes, formData.wallet_id );
+    setFormData(formInitialState);
+  };
+
+  const addExpense = async (date, category, amount, amount_native_currency, notes, wallet_id) => {
+    let expense = { date, category, amount, amount_native_currency, notes, wallet_id};
+    let options = { method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(expense)};
+
+      try {
+        await fetch ("/expenses", options);
+        getExpenses();
+      } catch (err) {
+        console.log("network error:" , err);
+      }
+  }
   //try out static external API call - USD to GBP
 async function getCurrency(currency) {
   let currency_url = "https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=USD&to_currency=GBP&apikey=4E8ZBH6BEU83RWHA";
@@ -67,7 +94,7 @@ useEffect(() => {
     // console.log("goodbye")
     getWallets();
     getExpenses();
-    getCurrency();
+    // getCurrency();
   }, []);
  
 
@@ -89,9 +116,51 @@ useEffect(() => {
         1 USD = {currency} GBP
 
         <h2>Transaction Details</h2>
-      {/* <p>{result[0].date} {result[0].category} GBP{(result[0].amount).toFixed(2)} | USD{(result[0].amount* currency).toFixed(2)} </p> */}
-       
-     {result[0].date} {result[0].category} GBP{(result[0].amount).toFixed(2)} | USD{(result[0].amount* currency).toFixed(2)}
+        {/* very buggy, look into this */}
+     {/* {result[0].date} {result[0].category} GBP{(result[0].amount).toFixed(2)} | USD{(result[0].amount* currency).toFixed(2)} */}
+
+
+
+          <h2>Create a new transaction</h2>
+          <form>
+            <label>New Transaction</label>
+            <input type="date"
+            onChange={(e) => handleInputChange(e)} name="date"  placeholder="date">
+            </input>
+            
+            <input type="text"
+            onChange={(e) => handleInputChange(e)} name="category" value= {formData.category} placeholder="category">
+            </input>
+
+            {/* <select id="categories" name="category" onSelect={(e) => handleInputChange(e)}> 
+            <option value={formData.category}>Food</option>
+            <option value={formData.category}>Travel</option>
+            <option value={formData.category}>Shopping</option>
+            <option value={formData.category}>Others</option>
+
+
+            </select> */}
+
+            <input type="number"
+            onChange={(e) => handleInputChange(e)} name="amount" value= {formData.amount} placeholder="amount">
+            </input>
+             <input type="number"
+            onChange={(e) => handleInputChange(e)} name="amount_native_currency" value= {formData.amount_native_currency} placeholder="amount native currency">
+            </input>
+
+
+           <input type="notes"
+            onChange={(e) => handleInputChange(e)} name="notes" value= {formData.notes} placeholder="notes">
+            </input>
+            <input type="number"
+            onChange={(e) => handleInputChange(e)} name="wallet_id" value= {formData.wallet_id} placeholder="wallet">
+            </input>
+
+            <button onClick={handleSubmit} type ="submit">
+            submit
+            </button>
+          </form>
+
     </div>
   );
 }
