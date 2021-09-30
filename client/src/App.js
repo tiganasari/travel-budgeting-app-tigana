@@ -9,9 +9,17 @@ const [currency, setCurrency] = useState(0);
 const [error, setError] = useState("");
 const [result, setResult] = useState([]);
 const formInitialState = { date: "", category: " ", amount: "", amount_native_currency: "", notes: "", wallet_id: "",};
-const walletInitialState = { city: "", currency: "",sum :" ", sum_native_currency:" ", user_id:"" };
+const walletInitialState = { city: "", currency: "", native_currency: "",sum :" ", sum_native_currency:" ", user_id:"" };
 const [formData, setFormData] = useState(formInitialState);
-const [walletData, setWalletData] = useState([walletInitialState]);
+const [walletData, setWalletData] = useState(walletInitialState)
+const [walletId, setWalletId] = useState(0);
+//add onlick wallet map or add a button
+// key needs to be added {item.id}
+// after onclick, create function getWalletId
+//update setWalletId hook
+//replace 34 by hookId 
+//add condition inside addExpense function to avoid new transaction without walletId
+
 
 
 const getWallets = () => {
@@ -49,6 +57,8 @@ const getWallets = () => {
     console.log(result[0].category);
   }
 
+
+
   const handleInputChange = (event) => {
     let { name, value } = event.target;
     setFormData({ ... formData,  [name]: value});
@@ -60,12 +70,12 @@ const getWallets = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    addExpense(formData.date, formData.category,formData.amount, 0, formData.notes, 1 );
+    addExpense(formData.date, formData.category,formData.amount, 0, formData.notes, 34 );
     setFormData(formInitialState);
   };
   const handleSubmitWallet = (event) => {
     event.preventDefault();
-    addWallet(walletData.city, walletData.currency, 0, 0, 1);
+    addWallet(walletData.city, walletData.currency, walletData.native_currency, 0, 0, 1);
     setWalletData(walletInitialState);
   };
 
@@ -84,8 +94,8 @@ const getWallets = () => {
         console.log("network error:" , err);
       }
   }
-  const addWallet = async (city, currency, sum, sum_native_currency, user_id) => {
-    let wallet = { city, currency, sum, sum_native_currency, user_id};
+  const addWallet = async (city, currency, native_currency, sum, sum_native_currency, user_id) => {
+    let wallet = { city, currency, native_currency, sum, sum_native_currency, user_id};
     let options = { method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(wallet)};
@@ -126,32 +136,43 @@ useEffect(() => {
     // console.log("goodbye")
     getWallets();
     getExpenses();
-    // getCurrency();
+    getCurrency();
   }, []);
- 
+  //First version
+//  wallets.map( wallet = () => {
+//   expenses.map( expense = () =>{
+//       //if wallet id  === expense wallet id
+//           //then wallet sum += expense sum
+         
+//   })
+//  }
+//   //display sum in a html tag
+//  )
 
   return (
     <div className="App">
       <h1> TRAVEL EXPENSE TRACKER APP</h1>
       <h2>Available wallets</h2>
       <ul>
-        {wallets.map((i) => 
-        <li id={i.id}> {i.city} </li>)}
+        {wallets.length > 0 && wallets.map((i) => 
+        <li id={i.id}> {i.city} | {i.currency} | {i.native_currency} |  wallet sum {i.sum}</li>)}
       </ul>
       <h2>Transactions</h2>
       <ul>
         {expenses.map((i) => 
-        <li key={i.id} onClick={() => onSelectItem(i.id)}> {i.category} £{i.amount}</li>)}
+        <li key={i.id} onClick={() => onSelectItem(i.id)}> {i.date} {i.category} {i.notes} £{i.amount.toFixed(2)} | $000
+         {/* {(i.amount) / currency}   */}
+         </li>)}
       </ul>
 
         <h2>Live exchange rates</h2>
         1 USD = {currency} GBP
 
-        <h2>Transaction Details</h2>
-        {/* very buggy, look into this */}
-     {/* {result[0].date} {result[0].category} GBP{(result[0].amount).toFixed(2)} | USD{(result[0].amount* currency).toFixed(2)} */}
-
-
+        <h2>Transaction Details</h2>  
+        
+        {result.length > 0 &&  <p> {result[0].date} {result[0].category} GBP{(result[0].amount).toFixed(2)} | USD{(result[0].amount/ currency).toFixed(2)}  </p> }
+        
+       
 
           <h2>Create a new transaction</h2>
           <form>
@@ -173,7 +194,7 @@ useEffect(() => {
 
             </select> */}
 
-            <input type="number"
+            <input type="text"
             onChange={(e) => handleInputChange(e)} name="amount" value= {formData.amount} placeholder="amount">
             </input>
              {/* <input type="number"
@@ -203,7 +224,7 @@ useEffect(() => {
 
             <input type="text" onChange={(e) => handleInputChangeWallet(e)} name="currency" value= {walletData.currency} placeholder="currency"/> 
 
-              {/* <input type="text" onChange={(e) => handleInputChangeWallet(e)} name="native_currency" value= {walletData.native_currency} placeholder="native currency"/>  */}
+              <input type="text" onChange={(e) => handleInputChangeWallet(e)} name="native_currency" value= {walletData.native_currency} placeholder="native currency"/> 
               
               <button onClick={handleSubmitWallet} type ="submit">
             submit

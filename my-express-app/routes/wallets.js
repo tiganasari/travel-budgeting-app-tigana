@@ -32,9 +32,9 @@ router.get("/:wallet_id", (req, res) => {
 
 //create a new wallet
 router.post("/", (req, res) => {
-  let {city, currency, sum, sum_native_currency, user_id} = req.body;
+  let {city, currency, native_currency, sum, sum_native_currency, user_id} = req.body;
   db(
-    `INSERT INTO wallet (city, currency, sum, sum_native_currency, user_id) VALUES ('${city}', '${currency}', ${sum}, ${sum_native_currency}, ${user_id})`
+    `INSERT INTO wallet (city, currency, native_currency, sum, sum_native_currency, user_id) VALUES ('${city}', '${currency}', '${native_currency}', ${sum}, ${sum_native_currency}, ${user_id})`
   )
     .then(results => {
       // res.send({ message: "done!" });

@@ -5,6 +5,7 @@ CREATE TABLE `wallet` (
 	`id` int NOT NULL AUTO_INCREMENT,
 	`city` char(40) NOT NULL,
 	`currency` char(40) NOT NULL,
+	`native_currency` char(40) NOT NULL,
 	`sum` int,
 	`sum_native_currency` int,
 	`user_id` int NOT NULL,

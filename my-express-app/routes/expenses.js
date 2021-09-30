@@ -11,7 +11,7 @@ function getAllExpenses(req, res) {
     .catch(err => res.status(500).send(err));
 }
 
-//display all wallets
+//display all expenses
 router.get("/", (req, res) => {
   // Send back the full list of items
   db("SELECT * FROM expenses ORDER BY id ASC")
@@ -22,8 +22,8 @@ router.get("/", (req, res) => {
 });
 
 //display expense by ID 
-router.get("/:expense_id", (req, res) => {
-  db(`SELECT * FROM expenses WHERE id=${req.params.expense_id}`)
+router.get("/:wallet_id", (req, res) => {
+  db(`SELECT * FROM expenses WHERE wallet_id=${req.params.wallet_id}`)
     .then(results => {
       res.send(results.data);
     })
