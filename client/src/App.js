@@ -180,9 +180,7 @@ useEffect(() => {
         <h2>Transaction Details</h2>  
         
         {result.length > 0 &&  <p> {result[0].date} {result[0].category} GBP{(result[0].amount).toFixed(2)} | USD{(result[0].amount/ currency).toFixed(2)}  </p> }
-        
-       
-
+      
           <h2>Create a new transaction</h2>
           <form>
             <label>New Transaction</label>
@@ -239,8 +237,15 @@ useEffect(() => {
             <option value={"IDR"}>Rupiah</option>
             </select>
 
-              <input type="text" onChange={(e) => handleInputChangeWallet(e)} name="native_currency" value= {walletData.native_currency} placeholder="native currency"/> 
-              
+              {/* <input type="text" onChange={(e) => handleInputChangeWallet(e)} name="native_currency" value= {walletData.native_currency} placeholder="native currency"/> 
+               */}
+
+                <select id="native_currency" name="native_currency" onChange={(e) => handleInputChangeWallet(e)}> 
+            <option value={"GBP"}>Poundsterling</option>
+            <option value={"EUR"}>Euros</option>
+            <option value={"USD"}>Dollars</option>
+            <option value={"IDR"}>Rupiah</option>
+            </select>
               <button onClick={handleSubmitWallet} type ="submit">
             submit
             </button>
