@@ -1,5 +1,6 @@
 import './App.css';
 import React, { useEffect, useState} from "react";
+import WalletDetail from "./components/WalletDetail";
 
 function App() {
 
@@ -7,7 +8,7 @@ const [wallets, setWallets] = useState([]);
 const [expenses, setExpenses] = useState([]);
 const [currency, setCurrency] = useState(0);
 const [error, setError] = useState("");
-const [result, setResult] = useState([]);
+
 const formInitialState = { date: "", category: " ", amount: "", amount_native_currency: "", notes: "", wallet_id: "",};
 const walletInitialState = { city: "", currency: "", native_currency: "",sum :" ", sum_native_currency:" ", user_id:"" };
 const [formData, setFormData] = useState(formInitialState);
@@ -50,14 +51,16 @@ const getWallets = () => {
       });
   };
 
-  const onSelectItem = (id) => {
-    // console.log(id);
-    let result = expenses.filter(expense => expense.id === id)
-    setResult(result);
-    console.log(result[0].category);
+  // const onSelectItem = (id) => {
+  //   // console.log(id);
+  //   let result = expenses.filter(expense => expense.id === id)
+  //   setResult(result);
+  //   console.log(result[0].category);
+  // }
+
+  const onSelectWallet = (id) => {
+    console.log(id);
   }
-
-
 
   const handleInputChange = (event) => {
     let { name, value } = event.target;
@@ -157,29 +160,35 @@ useEffect(() => {
   return (
     <div className="App">
       <h1> TRAVEL EXPENSE TRACKER APP</h1>
-      <div className="hello">
+      <div className="walletList">
+          
+
          <h2>Available wallets</h2>
       <ul>
         {wallets.length > 0 && wallets.map((i) => 
-        <li id={i.id}> {i.city} | {i.currency} to {i.native_currency} |  wallet sum {i.sum}</li>)}
+        <li id={i.id}> {i.city} | {i.currency} to {i.native_currency} |  wallet sum {i.sum}
+        <button key={i.id} onClick={() => onSelectWallet(i.id)}> view</button></li>)}
       </ul>
       </div>
       
      
       <h2>Transactions</h2>
-      <ul>
+       <WalletDetail
+         expenses={expenses} />
+      {/* <ul>
         {expenses.map((i) => 
         <li key={i.id} onClick={() => onSelectItem(i.id)}> {i.date} {i.category} | {i.notes} £{i.amount.toFixed(2)} | $ {(i.amount / currency).toFixed(2)} 
-         {/* {(i.amount) / currency}   */}
+         {(i.amount) / currency}  
          </li>)}
-      </ul>
+      </ul> */}
 
         <h2>Live exchange rates</h2>
         1 USD = {currency} GBP
 
         <h2>Transaction Details</h2>  
-        
-        {result.length > 0 &&  <p> {result[0].date} {result[0].category} GBP{(result[0].amount).toFixed(2)} | USD{(result[0].amount/ currency).toFixed(2)}  </p> }
+       
+{/* 
+        {result.length > 0 &&  <p> {result[0].date} {result[0].category} GBP{(result[0].amount).toFixed(2)} | USD{(result[0].amount/ currency).toFixed(2)}  </p> } */}
       
           <h2>Create a new transaction</h2>
           <form>
