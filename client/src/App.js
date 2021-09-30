@@ -61,6 +61,8 @@ const getWallets = () => {
 
   const handleInputChange = (event) => {
     let { name, value } = event.target;
+    console.log(name + " " + value);
+    
     setFormData({ ... formData,  [name]: value});
   }
   const handleInputChangeWallet = (event) => {
@@ -138,6 +140,8 @@ useEffect(() => {
     getExpenses();
     getCurrency();
   }, []);
+
+
   //First version
 //  wallets.map( wallet = () => {
 //   expenses.map( expense = () =>{
@@ -155,12 +159,12 @@ useEffect(() => {
       <h2>Available wallets</h2>
       <ul>
         {wallets.length > 0 && wallets.map((i) => 
-        <li id={i.id}> {i.city} | {i.currency} | {i.native_currency} |  wallet sum {i.sum}</li>)}
+        <li id={i.id}> {i.city} | {i.currency} to {i.native_currency} |  wallet sum {i.sum}</li>)}
       </ul>
       <h2>Transactions</h2>
       <ul>
         {expenses.map((i) => 
-        <li key={i.id} onClick={() => onSelectItem(i.id)}> {i.date} {i.category} {i.notes} £{i.amount.toFixed(2)} | $000
+        <li key={i.id} onClick={() => onSelectItem(i.id)}> {i.date} {i.category} | {i.notes} £{i.amount.toFixed(2)} | $000
          {/* {(i.amount) / currency}   */}
          </li>)}
       </ul>
@@ -181,18 +185,17 @@ useEffect(() => {
             onChange={(e) => handleInputChange(e)} name="date"  placeholder="date">
             </input>
             
-            <input type="text"
+            {/* <input type="text"
             onChange={(e) => handleInputChange(e)} name="category" value= {formData.category} placeholder="category">
-            </input>
+            </input> */}
 
-            {/* <select id="categories" name="category" onSelect={(e) => handleInputChange(e)}> 
-            <option value={formData.category}>Food</option>
-            <option value={formData.category}>Travel</option>
-            <option value={formData.category}>Shopping</option>
-            <option value={formData.category}>Others</option>
-
-
-            </select> */}
+            <select id="categories" name="category" onChange={(e) => handleInputChange(e)}> 
+            <option value={"Food"}>Food</option>
+            <option value={"Travel"}>Travel</option>
+            <option value={"Shopping"}>Shopping</option>
+            <option value={"Others"}>Others</option>
+            <option value={"Accommodation"}>Accommodation</option>
+            </select>
 
             <input type="text"
             onChange={(e) => handleInputChange(e)} name="amount" value= {formData.amount} placeholder="amount">
