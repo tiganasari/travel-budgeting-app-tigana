@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 export const WalletDetail = ({expenses}) => {
 
     const [result, setResult] = useState([]);
+    
     const onSelectItem = (id) => {
     // console.log(id);
     let result = expenses.filter(expense => expense.id === id)

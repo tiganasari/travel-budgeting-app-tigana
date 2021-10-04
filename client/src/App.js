@@ -59,24 +59,24 @@ const getWallets = () => {
   // }
 
   const onSelectWallet = (id) => {
-    console.log(id);
+    setWalletId(id);
+    console.log(walletId)
   }
 
   const handleInputChange = (event) => {
     let { name, value } = event.target;
-    console.log(name + " " + value);
     
     setFormData({ ... formData,  [name]: value});
   }
   const handleInputChangeWallet = (event) => {
     let { name, value } = event.target;
-    console.log( value);
+    // console.log( value);
     setWalletData({ ... walletData,  [name]: value});
   }
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    addExpense(formData.date, formData.category,formData.amount, 0, formData.notes, 34 );
+    addExpense(formData.date, formData.category,formData.amount, 0, formData.notes, walletId );
     setFormData(formInitialState);
   };
   const handleSubmitWallet = (event) => {
@@ -129,7 +129,7 @@ try {
     let currencyResult = await response.json();
     let currency = currencyResult["Realtime Currency Exchange Rate"]["5. Exchange Rate"];
     setCurrency(currency)
-    console.log(currency)
+    // console.log(currency)
   } else {
     setError ("server error")
   }
