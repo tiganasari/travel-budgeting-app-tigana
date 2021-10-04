@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 
 export const NewWallet = (props) => {
-
-    const [walletData, setWalletData] = useState(walletInitialState);
     const walletInitialState = { city: "", currency: "", native_currency: "",sum :" ", sum_native_currency:" ", user_id:"" };
 
+    const [walletData, setWalletData] = useState(walletInitialState);
+    
     const handleInputChangeWallet = (event) => {
     let { name, value } = event.target;
     // console.log( value);

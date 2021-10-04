@@ -12,6 +12,7 @@ const [expenses, setExpenses] = useState([]);
 const [currency, setCurrency] = useState(0);
 const [error, setError] = useState("");
 
+
 const formInitialState = { date: "", category: " ", amount: "", amount_native_currency: "", notes: "", wallet_id: "",};
 // const walletInitialState = { city: "", currency: "", native_currency: "",sum :" ", sum_native_currency:" ", user_id:"" };
 const [formData, setFormData] = useState(formInitialState);
@@ -162,6 +163,15 @@ const sumWallet = () => {
     })
   })
 }
+
+//component wallets - render in app js as a list
+//inside of wallets component - fetch get wallets 
+// display list of wallets - 
+//state called sum  to display later
+// create individual wallet component -> get all transactions -> loop through transactions and create function getSum, loop through transactions add it up together, setSum(total)
+//pass props 
+
+
   
   //First version
 //  wallets.map( wallet = () => {
@@ -173,6 +183,8 @@ const sumWallet = () => {
 //  }
 //   //display sum in a html tag
 //  )
+
+
 
   return (
        <Router> 
@@ -250,7 +262,9 @@ const sumWallet = () => {
            <Link to="/newwallet"> 
            <button onClick= " ">Add a new Wallet</button>
            </Link>
-            <Route path ="/newwallet" component= { <NewWallet addWallet={(city, currency, native_currency, sum, sum_native_currency, user_id) => addWallet(city, currency, native_currency, sum, sum_native_currency, user_id)} /> } />
+            {/* <Route path ="/newwallet" component= { <NewWallet addWallet={(city, currency, native_currency, sum, sum_native_currency, user_id) => addWallet(city, currency, native_currency, sum, sum_native_currency, user_id)} /> } /> */}
+
+            <Route path ="/newwallet" > <NewWallet addWallet={(city, currency, native_currency, sum, sum_native_currency, user_id) => addWallet(city, currency, native_currency, sum, sum_native_currency, user_id)} /> </Route>
 
             <h2>
               Create a new wallet
@@ -268,7 +282,7 @@ const sumWallet = () => {
             <option value={"EUR"}>Euros</option>
             <option value={"USD"}>Dollars</option>
             <option value={"IDR"}>Rupiah</option>
-            </select> */} */}
+            </select> */} 
 
               {/* <input type="text" onChange={(e) => handleInputChangeWallet(e)} name="native_currency" value= {walletData.native_currency} placeholder="native currency"/> 
                */}
