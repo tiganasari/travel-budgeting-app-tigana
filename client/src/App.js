@@ -1,6 +1,9 @@
 import './App.css';
 import React, { useEffect, useState} from "react";
 import WalletDetail from "./components/WalletDetail";
+import NewWallet from "./components/NewWallet";
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+
 
 function App() {
 
@@ -10,10 +13,11 @@ const [currency, setCurrency] = useState(0);
 const [error, setError] = useState("");
 
 const formInitialState = { date: "", category: " ", amount: "", amount_native_currency: "", notes: "", wallet_id: "",};
-const walletInitialState = { city: "", currency: "", native_currency: "",sum :" ", sum_native_currency:" ", user_id:"" };
+// const walletInitialState = { city: "", currency: "", native_currency: "",sum :" ", sum_native_currency:" ", user_id:"" };
 const [formData, setFormData] = useState(formInitialState);
-const [walletData, setWalletData] = useState(walletInitialState)
+// const [walletData, setWalletData] = useState(walletInitialState)
 const [walletId, setWalletId] = useState(0);
+// const [sumWallet, setSumWallet] = useState(0);
 //add onlick wallet map or add a button
 // key needs to be added {item.id}
 // after onclick, create function getWalletId
@@ -68,22 +72,22 @@ const getWallets = () => {
     
     setFormData({ ... formData,  [name]: value});
   }
-  const handleInputChangeWallet = (event) => {
-    let { name, value } = event.target;
-    // console.log( value);
-    setWalletData({ ... walletData,  [name]: value});
-  }
+  // const handleInputChangeWallet = (event) => {
+  //   let { name, value } = event.target;
+  //   // console.log( value);
+  //   setWalletData({ ... walletData,  [name]: value});
+  // }
 
   const handleSubmit = (event) => {
     event.preventDefault();
     addExpense(formData.date, formData.category,formData.amount, 0, formData.notes, walletId );
     setFormData(formInitialState);
   };
-  const handleSubmitWallet = (event) => {
-    event.preventDefault();
-    addWallet(walletData.city, walletData.currency, walletData.native_currency, 0, 0, 1);
-    setWalletData(walletInitialState);
-  };
+  // const handleSubmitWallet = (event) => {
+  //   event.preventDefault();
+  //   addWallet(walletData.city, walletData.currency, walletData.native_currency, 0, 0, 1);
+  //   setWalletData(walletInitialState);
+  // };
 
  
 
@@ -143,9 +147,22 @@ useEffect(() => {
     getWallets();
     getExpenses();
     getCurrency();
+    sumWallet();
   }, []);
 
 
+const sumWallet = () => {
+  wallets.map (wallets => {
+    expenses.map( expenses => {
+      if(wallets.id === expenses.wallet_id) {
+        let walletSum = 0;
+        walletSum += expenses.amount;
+        console.log(walletSum)
+      }
+    })
+  })
+}
+  
   //First version
 //  wallets.map( wallet = () => {
 //   expenses.map( expense = () =>{
@@ -158,7 +175,9 @@ useEffect(() => {
 //  )
 
   return (
+       <Router> 
     <div className="App">
+   
       <h1> TRAVEL EXPENSE TRACKER APP</h1>
       <div className="walletList">
           
@@ -228,27 +247,32 @@ useEffect(() => {
             submit
             </button>
           </form>
-
+           <Link to="/newwallet"> 
+           <button onClick= " ">Add a new Wallet</button>
+           </Link>
+            <Route path ="/newwallet" component= { <NewWallet addWallet={(city, currency, native_currency, sum, sum_native_currency, user_id) => addWallet(city, currency, native_currency, sum, sum_native_currency, user_id)} /> } />
 
             <h2>
               Create a new wallet
             </h2>
-            <form>  
+
+        
+            {/* <form>  
              <label>New Wallet</label>
             <input type="text" onChange={(e) => handleInputChangeWallet(e)} name="city" value= {walletData.city} placeholder="city"/> 
 
             {/* <input type="text" onChange={(e) => handleInputChangeWallet(e)} name="currency" value= {walletData.currency} placeholder="currency"/>  */}
 
-             <select id="currency" name="currency" onChange={(e) => handleInputChangeWallet(e)}> 
+             {/* <select id="currency" name="currency" onChange={(e) => handleInputChangeWallet(e)}> 
             <option value={"GBP"}>Poundsterling</option>
             <option value={"EUR"}>Euros</option>
             <option value={"USD"}>Dollars</option>
             <option value={"IDR"}>Rupiah</option>
-            </select>
+            </select> */} */}
 
               {/* <input type="text" onChange={(e) => handleInputChangeWallet(e)} name="native_currency" value= {walletData.native_currency} placeholder="native currency"/> 
                */}
-
+{/* 
                 <select id="native_currency" name="native_currency" onChange={(e) => handleInputChangeWallet(e)}> 
             <option value={"GBP"}>Poundsterling</option>
             <option value={"EUR"}>Euros</option>
@@ -258,9 +282,10 @@ useEffect(() => {
               <button onClick={handleSubmitWallet} type ="submit">
             submit
             </button>
-            </form>
+            </form> */}
             
     </div>
+    </Router>
   );
 }
 
