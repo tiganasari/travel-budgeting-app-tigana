@@ -2,6 +2,7 @@ import './App.css';
 import React, { useEffect, useState} from "react";
 import WalletDetail from "./components/WalletDetail";
 import NewWallet from "./components/NewWallet";
+import WalletList from "./components/WalletList";
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 
@@ -191,17 +192,7 @@ const sumWallet = () => {
     <div className="App">
    
       <h1> TRAVEL EXPENSE TRACKER APP</h1>
-      <div className="walletList">
-          
-
-         <h2>Available wallets</h2>
-      <ul>
-        {wallets.length > 0 && wallets.map((i) => 
-        <li id={i.id}> {i.city} | {i.currency} to {i.native_currency} |  wallet sum {i.sum}
-        <button key={i.id} onClick={() => onSelectWallet(i.id)}> view</button></li>)}
-      </ul>
-      </div>
-      
+      <WalletList wallets={wallets} />
      
       <h2>Transactions</h2>
        <WalletDetail
@@ -266,9 +257,7 @@ const sumWallet = () => {
 
             <Route path ="/newwallet" > <NewWallet addWallet={(city, currency, native_currency, sum, sum_native_currency, user_id) => addWallet(city, currency, native_currency, sum, sum_native_currency, user_id)} /> </Route>
 
-            <h2>
-              Create a new wallet
-            </h2>
+           
 
         
             {/* <form>  
@@ -302,5 +291,8 @@ const sumWallet = () => {
     </Router>
   );
 }
+
+
+
 
 export default App;

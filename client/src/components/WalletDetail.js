@@ -13,7 +13,7 @@ export const WalletDetail = ({expenses}) => {
 
     return (
         <div>
-             <h2>Transaction</h2>  
+        <h2>Transaction</h2>  
          <ul>
         {expenses.map((i) => 
         <li key={i.id} onClick={() => onSelectItem(i.id)}> {i.date} {i.category} | {i.notes} £{i.amount.toFixed(2)} | 
