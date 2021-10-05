@@ -4,6 +4,7 @@ import WalletDetail from "./components/WalletDetail";
 import NewWallet from "./components/NewWallet";
 import NewTransaction from "./components/NewTransaction";
 import WalletList from "./components/WalletList";
+import ExchangeRates from "./components/ExchangeRates";
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 
@@ -198,8 +199,11 @@ const sumWallet = () => {
       <Route path ="/" exact> <WalletList wallets={wallets}/> </Route> 
       <Route path ="/walletdetail"> <WalletDetail expenses={expenses} /> </Route>
       <Route path ="/newwallet" > <NewWallet addWallet={(city, currency, native_currency, sum, sum_native_currency, user_id) => addWallet(city, currency, native_currency, sum, sum_native_currency, user_id)} /> </Route>
-      <Route path ="/newtransaction"> <NewTransaction addExpense={(date, category, amount, mount_native_currency , notes, wallet_id) => addExpense(date, category, amount, mount_native_currency , notes, wallet_id)} />
-         </Route>
+      <Route path ="/newtransaction"> <NewTransaction addExpense={(date, category, amount, mount_native_currency , notes, wallet_id) => addExpense(date, category, amount, mount_native_currency , notes, wallet_id)} /> </Route>
+      <Route path ="/exchangerates"> <ExchangeRates currency={currency} /> </Route>
+
+     
+  
   
 
 
@@ -209,8 +213,8 @@ const sumWallet = () => {
       </Switch>
  
       
-        <h2>Live exchange rates</h2>
-        1 USD = {currency} GBP
+        {/* <h2>Live exchange rates</h2>
+        1 USD = {currency} GBP */}
        
 {/* 
         {result.length > 0 &&  <p> {result[0].date} {result[0].category} GBP{(result[0].amount).toFixed(2)} | USD{(result[0].amount/ currency).toFixed(2)}  </p> } */}
