@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+
 
 export const NewWallet = (props) => {
     const walletInitialState = { city: "", currency: "", native_currency: "",sum :" ", sum_native_currency:" ", user_id:"" };
@@ -49,9 +50,7 @@ export const NewWallet = (props) => {
 
     return (
         <div>
-             <h2>
-              Create a new wallet
-            </h2>
+    
 
             <h2>
               Create a new wallet
@@ -83,6 +82,7 @@ export const NewWallet = (props) => {
             </button>
             </form>
             
+           
         </div>
     )
 }

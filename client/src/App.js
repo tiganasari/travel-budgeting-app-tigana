@@ -188,22 +188,20 @@ const sumWallet = () => {
 
 
   return (
-       <Router> 
-    <div className="App">
+    <Router> 
+      <div className="App">
    
       <h1> TRAVEL EXPENSE TRACKER APP</h1>
-      <WalletList wallets={wallets} />
-     
-      <h2>Transactions</h2>
-       <WalletDetail
-         expenses={expenses} />
-      {/* <ul>
-        {expenses.map((i) => 
-        <li key={i.id} onClick={() => onSelectItem(i.id)}> {i.date} {i.category} | {i.notes} £{i.amount.toFixed(2)} | $ {(i.amount / currency).toFixed(2)} 
-         {(i.amount) / currency}  
-         </li>)}
-      </ul> */}
+      <Switch>
+      <Route path ="/" exact> <WalletList wallets={wallets}/> </Route> 
+      <Route path ="/walletdetail"> <WalletDetail expenses={expenses} /> </Route>
+      <Route path ="/newwallet" > <NewWallet addWallet={(city, currency, native_currency, sum, sum_native_currency, user_id) => addWallet(city, currency, native_currency, sum, sum_native_currency, user_id)} /> </Route>
 
+      {/* <WalletDetail expenses={expenses} /> */}
+
+      </Switch>
+ 
+      
         <h2>Live exchange rates</h2>
         1 USD = {currency} GBP
 
@@ -250,14 +248,9 @@ const sumWallet = () => {
             submit
             </button>
           </form>
-           <Link to="/newwallet"> 
-           <button onClick= " ">Add a new Wallet</button>
-           </Link>
+           
             {/* <Route path ="/newwallet" component= { <NewWallet addWallet={(city, currency, native_currency, sum, sum_native_currency, user_id) => addWallet(city, currency, native_currency, sum, sum_native_currency, user_id)} /> } /> */}
 
-            <Route path ="/newwallet" > <NewWallet addWallet={(city, currency, native_currency, sum, sum_native_currency, user_id) => addWallet(city, currency, native_currency, sum, sum_native_currency, user_id)} /> </Route>
-
-           
 
         
             {/* <form>  

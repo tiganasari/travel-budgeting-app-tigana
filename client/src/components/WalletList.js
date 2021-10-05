@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 
 export const WalletList = ({wallets}) => {
     const [walletId, setWalletId] = useState(0);
@@ -16,7 +17,12 @@ export const WalletList = ({wallets}) => {
         <li id={i.id}> {i.city} | {i.currency} to {i.native_currency} |  wallet sum {i.sum}
         <button key={i.id} onClick={() => onSelectWallet(i.id)}> view</button></li>)}
       </ul>
+       <Link to="/newwallet"> 
+           <button onClick= " ">Add a new Wallet</button>
+           </Link>
   </div>
+
+  
     )
 };
 
