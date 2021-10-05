@@ -18,8 +18,16 @@ export const WalletList = ({wallets}) => {
         <button key={i.id} onClick={() => onSelectWallet(i.id)}> view</button></li>)}
       </ul>
        <Link to="/newwallet"> 
-           <button onClick= " ">Add a new Wallet</button>
-           </Link>
+        <button onClick= " ">Add a new Wallet</button>
+        </Link>
+
+        {/* move this button to WalletDetail component  */}
+       <Link to="/newtransaction"> 
+        <button onClick= " ">Add a new transaction</button>
+        </Link> 
+
+
+           
   </div>
 
   

@@ -2,6 +2,7 @@ import './App.css';
 import React, { useEffect, useState} from "react";
 import WalletDetail from "./components/WalletDetail";
 import NewWallet from "./components/NewWallet";
+import NewTransaction from "./components/NewTransaction";
 import WalletList from "./components/WalletList";
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
@@ -80,11 +81,12 @@ const getWallets = () => {
   //   setWalletData({ ... walletData,  [name]: value});
   // }
 
-  const handleSubmit = (event) => {
+   const handleSubmit = (event) => {
     event.preventDefault();
     addExpense(formData.date, formData.category,formData.amount, 0, formData.notes, walletId );
     setFormData(formInitialState);
   };
+  
   // const handleSubmitWallet = (event) => {
   //   event.preventDefault();
   //   addWallet(walletData.city, walletData.currency, walletData.native_currency, 0, 0, 1);
@@ -196,6 +198,11 @@ const sumWallet = () => {
       <Route path ="/" exact> <WalletList wallets={wallets}/> </Route> 
       <Route path ="/walletdetail"> <WalletDetail expenses={expenses} /> </Route>
       <Route path ="/newwallet" > <NewWallet addWallet={(city, currency, native_currency, sum, sum_native_currency, user_id) => addWallet(city, currency, native_currency, sum, sum_native_currency, user_id)} /> </Route>
+      <Route path ="/newtransaction"> <NewTransaction addExpense={(date, category, amount, mount_native_currency , notes, wallet_id) => addExpense(date, category, amount, mount_native_currency , notes, wallet_id)} />
+         </Route>
+  
+
+
 
       {/* <WalletDetail expenses={expenses} /> */}
 
@@ -204,50 +211,48 @@ const sumWallet = () => {
       
         <h2>Live exchange rates</h2>
         1 USD = {currency} GBP
-
-        <h2>Transaction Details</h2>  
        
 {/* 
         {result.length > 0 &&  <p> {result[0].date} {result[0].category} GBP{(result[0].amount).toFixed(2)} | USD{(result[0].amount/ currency).toFixed(2)}  </p> } */}
       
-          <h2>Create a new transaction</h2>
-          <form>
+          {/* <h2>Create a new transaction</h2> */}
+          {/* <form>
             <label>New Transaction</label>
             <input type="date"
             onChange={(e) => handleInputChange(e)} name="date"  placeholder="date">
             </input>
-            
+             */}
             {/* <input type="text"
             onChange={(e) => handleInputChange(e)} name="category" value= {formData.category} placeholder="category">
             </input> */}
 
-            <select id="categories" name="category" onChange={(e) => handleInputChange(e)}> 
+            {/* <select id="categories" name="category" onChange={(e) => handleInputChange(e)}> 
             <option value={"Food"}>Food</option>
             <option value={"Travel"}>Travel</option>
             <option value={"Shopping"}>Shopping</option>
             <option value={"Others"}>Others</option>
             <option value={"Accommodation"}>Accommodation</option>
-            </select>
+            </select> */}
 
-            <input type="text"
+            {/* <input type="text"
             onChange={(e) => handleInputChange(e)} name="amount" value= {formData.amount} placeholder="amount">
-            </input>
+            </input> */}
              {/* <input type="number"
             onChange={(e) => handleInputChange(e)} name="amount_native_currency" value= {formData.amount_native_currency} placeholder="amount native currency">
             </input> */}
 
 
-           <input type="notes"
+           {/* <input type="notes"
             onChange={(e) => handleInputChange(e)} name="notes" value= {formData.notes} placeholder="notes">
-            </input>
+            </input> */}
             {/* <input type="number"
             onChange={(e) => handleInputChange(e)} name="wallet_id" value= {formData.wallet_id} placeholder="wallet">
             </input> */}
 
-            <button onClick={handleSubmit} type ="submit">
+            {/* <button onClick={handleSubmit} type ="submit">
             submit
             </button>
-          </form>
+          </form> */}
            
             {/* <Route path ="/newwallet" component= { <NewWallet addWallet={(city, currency, native_currency, sum, sum_native_currency, user_id) => addWallet(city, currency, native_currency, sum, sum_native_currency, user_id)} /> } /> */}
 

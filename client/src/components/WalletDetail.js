@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+// import NewTransaction from "./components/NewTransaction"; -> doesnt work, check path
 
 export const WalletDetail = ({expenses}) => {
 
@@ -13,7 +14,7 @@ export const WalletDetail = ({expenses}) => {
 
     return (
         <div>
-        <h2>Transaction</h2>  
+        <h2>Transactions</h2>  
          <ul>
         {expenses.map((i) => 
         <li key={i.id} onClick={() => onSelectItem(i.id)}> {i.date} {i.category} | {i.notes} £{i.amount.toFixed(2)} | 
@@ -21,6 +22,9 @@ export const WalletDetail = ({expenses}) => {
          </li>)}
       </ul>
        
+      {/* add new transaction here, insert component NewTransaction */}
+
+
         </div>
     )
 }
