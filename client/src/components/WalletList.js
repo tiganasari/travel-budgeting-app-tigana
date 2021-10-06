@@ -30,6 +30,10 @@ export const WalletList = ({wallets}) => {
         <button onClick= " ">Live exchange rates</button>
         </Link> 
 
+        <Link to="/walletdetail"> 
+        <button onClick= " ">Wallet Detail</button>
+        </Link> 
+
 
            
   </div>

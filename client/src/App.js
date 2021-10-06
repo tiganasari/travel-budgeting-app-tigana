@@ -59,12 +59,6 @@ const getWallets = () => {
       });
   };
 
-  // const onSelectItem = (id) => {
-  //   // console.log(id);
-  //   let result = expenses.filter(expense => expense.id === id)
-  //   setResult(result);
-  //   console.log(result[0].category);
-  // }
 
   const onSelectWallet = (id) => {
     setWalletId(id);
@@ -76,11 +70,7 @@ const getWallets = () => {
     
     setFormData({ ... formData,  [name]: value});
   }
-  // const handleInputChangeWallet = (event) => {
-  //   let { name, value } = event.target;
-  //   // console.log( value);
-  //   setWalletData({ ... walletData,  [name]: value});
-  // }
+
 
    const handleSubmit = (event) => {
     event.preventDefault();
@@ -88,11 +78,6 @@ const getWallets = () => {
     setFormData(formInitialState);
   };
   
-  // const handleSubmitWallet = (event) => {
-  //   event.preventDefault();
-  //   addWallet(walletData.city, walletData.currency, walletData.native_currency, 0, 0, 1);
-  //   setWalletData(walletInitialState);
-  // };
 
  
 
@@ -196,99 +181,13 @@ const sumWallet = () => {
    
       <h1> TRAVEL EXPENSE TRACKER APP</h1>
       <Switch>
-      <Route path ="/" exact> <WalletList wallets={wallets}/> </Route> 
-      <Route path ="/walletdetail"> <WalletDetail expenses={expenses} /> </Route>
-      <Route path ="/newwallet" > <NewWallet addWallet={(city, currency, native_currency, sum, sum_native_currency, user_id) => addWallet(city, currency, native_currency, sum, sum_native_currency, user_id)} /> </Route>
-      <Route path ="/newtransaction"> <NewTransaction addExpense={(date, category, amount, mount_native_currency , notes, wallet_id) => addExpense(date, category, amount, mount_native_currency , notes, wallet_id)} /> </Route>
-      <Route path ="/exchangerates"> <ExchangeRates currency={currency} /> </Route>
+          <Route path ="/" exact> <WalletList wallets={wallets}/> </Route> 
+          <Route path ="/walletdetail"> <WalletDetail expenses={expenses} /> </Route>
+          <Route path ="/newwallet" > <NewWallet addWallet={(city, currency, native_currency, sum, sum_native_currency, user_id) => addWallet(city, currency, native_currency, sum, sum_native_currency, user_id)} /> </Route>
+          <Route path ="/newtransaction"> <NewTransaction addExpense={(date, category, amount, mount_native_currency , notes, wallet_id) => addExpense(date, category, amount, mount_native_currency , notes, wallet_id)} /> </Route>
+          <Route path ="/exchangerates"> <ExchangeRates currency={currency} /> </Route>
 
-     
-  
-  
-
-
-
-      {/* <WalletDetail expenses={expenses} /> */}
-
-      </Switch>
- 
-      
-        {/* <h2>Live exchange rates</h2>
-        1 USD = {currency} GBP */}
-       
-{/* 
-        {result.length > 0 &&  <p> {result[0].date} {result[0].category} GBP{(result[0].amount).toFixed(2)} | USD{(result[0].amount/ currency).toFixed(2)}  </p> } */}
-      
-          {/* <h2>Create a new transaction</h2> */}
-          {/* <form>
-            <label>New Transaction</label>
-            <input type="date"
-            onChange={(e) => handleInputChange(e)} name="date"  placeholder="date">
-            </input>
-             */}
-            {/* <input type="text"
-            onChange={(e) => handleInputChange(e)} name="category" value= {formData.category} placeholder="category">
-            </input> */}
-
-            {/* <select id="categories" name="category" onChange={(e) => handleInputChange(e)}> 
-            <option value={"Food"}>Food</option>
-            <option value={"Travel"}>Travel</option>
-            <option value={"Shopping"}>Shopping</option>
-            <option value={"Others"}>Others</option>
-            <option value={"Accommodation"}>Accommodation</option>
-            </select> */}
-
-            {/* <input type="text"
-            onChange={(e) => handleInputChange(e)} name="amount" value= {formData.amount} placeholder="amount">
-            </input> */}
-             {/* <input type="number"
-            onChange={(e) => handleInputChange(e)} name="amount_native_currency" value= {formData.amount_native_currency} placeholder="amount native currency">
-            </input> */}
-
-
-           {/* <input type="notes"
-            onChange={(e) => handleInputChange(e)} name="notes" value= {formData.notes} placeholder="notes">
-            </input> */}
-            {/* <input type="number"
-            onChange={(e) => handleInputChange(e)} name="wallet_id" value= {formData.wallet_id} placeholder="wallet">
-            </input> */}
-
-            {/* <button onClick={handleSubmit} type ="submit">
-            submit
-            </button>
-          </form> */}
-           
-            {/* <Route path ="/newwallet" component= { <NewWallet addWallet={(city, currency, native_currency, sum, sum_native_currency, user_id) => addWallet(city, currency, native_currency, sum, sum_native_currency, user_id)} /> } /> */}
-
-
-        
-            {/* <form>  
-             <label>New Wallet</label>
-            <input type="text" onChange={(e) => handleInputChangeWallet(e)} name="city" value= {walletData.city} placeholder="city"/> 
-
-            {/* <input type="text" onChange={(e) => handleInputChangeWallet(e)} name="currency" value= {walletData.currency} placeholder="currency"/>  */}
-
-             {/* <select id="currency" name="currency" onChange={(e) => handleInputChangeWallet(e)}> 
-            <option value={"GBP"}>Poundsterling</option>
-            <option value={"EUR"}>Euros</option>
-            <option value={"USD"}>Dollars</option>
-            <option value={"IDR"}>Rupiah</option>
-            </select> */} 
-
-              {/* <input type="text" onChange={(e) => handleInputChangeWallet(e)} name="native_currency" value= {walletData.native_currency} placeholder="native currency"/> 
-               */}
-{/* 
-                <select id="native_currency" name="native_currency" onChange={(e) => handleInputChangeWallet(e)}> 
-            <option value={"GBP"}>Poundsterling</option>
-            <option value={"EUR"}>Euros</option>
-            <option value={"USD"}>Dollars</option>
-            <option value={"IDR"}>Rupiah</option>
-            </select>
-              <button onClick={handleSubmitWallet} type ="submit">
-            submit
-            </button>
-            </form> */}
-            
+      </Switch>  
     </div>
     </Router>
   );
