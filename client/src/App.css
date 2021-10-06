@@ -38,9 +38,10 @@ ul {
 }
 
 .button-list {
-  border: 1px solid lightblue;
+  border: 1px solid transparent;
   border-radius: 5px;
   font-size: 14px;
+  color: white;
 }
 
 .wallet-list {
@@ -59,6 +60,8 @@ ul {
 .wallet-list li {
   font-size: 12px;
   padding: 5px;
+  background-color: rgb(201, 199, 199);
+  color: white;
 }
 
 .link {
