@@ -60,6 +60,11 @@ ul {
   font-size: 12px;
   padding: 5px;
 }
+
+.link {
+  text-decoration: none;
+  color: black;
+}
 .wallet-buttons {
   display: flex;
   justify-content: center;
@@ -74,4 +79,20 @@ ul {
 
 li {
   margin: 10px;
+}
+
+.transaction {
+  font-size: 9px;
+  text-align: left;
+}
+
+.transaction-list {
+  border-radius: 10px;
+  margin: 20px;
+  padding: 10px;
+  background-color: rgba(240, 240, 240, 0.973);
+}
+
+.wallet-detail h2 {
+  margin: 20px;
 }

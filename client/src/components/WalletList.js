@@ -10,11 +10,17 @@ export const WalletList = ({wallets, handleId, walletId}) => {
 
     return (
       <div>
+         <h1 className="title"> Hello, Tigana! </h1>
         <div className="wallet-list">
         <h2>Available wallets</h2>
         <ul>
           {wallets.length > 0 && wallets.map((i) => 
-          <li className="button-list" key={i.id} onClick={() => onSelectWallet(i.id)}> {i.city} | {i.currency} to {i.native_currency} 
+          <li className="button-list" key={i.id} onClick={() => onSelectWallet(i.id)}>
+            <Link className="link" to={`walletdetail/${i.id}`}>
+           {i.city} | {i.currency} to {i.native_currency} 
+            </Link>
+           
+            {/* <link to={`wallet/${walletId}`}> {i.city} | {i.currency} to {i.native_currency} </link> */}
           {/* <button key={i.id} className="btn btn-light" onClick={() => onSelectWallet(i.id)}> view</button> */}
           </li>)}
         </ul>

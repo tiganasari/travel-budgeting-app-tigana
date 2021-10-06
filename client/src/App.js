@@ -7,7 +7,9 @@ import WalletList from "./components/WalletList";
 import ExchangeRates from "./components/ExchangeRates";
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+require('react-dom');
+window.React2 = require('react');
+console.log(window.React1 === window.React2);
 
 function App() {
 
@@ -164,11 +166,12 @@ const sumWallet = () => {
       <div className="travellet"> 
       <div className="menu"> 
       </div>
-      <h1 className="title"> Hello, Tigana! </h1>
+      
 
       <Switch>
           <Route path ="/" exact> <WalletList wallets={wallets} handleId={(id) => handleId(id)} walletId={walletId} /> </Route> 
-          <Route path ="/walletdetail"> <WalletDetail expenses={expenses} /> </Route> 
+          {/* <Route path ="/walletdetail"> <WalletDetail expenses={expenses} /> </Route>  */}
+          <Route path ="/walletdetail/:id"> <WalletDetail expenses={expenses} /> </Route> 
           <Route path ="/newwallet" > <NewWallet addWallet={(city, currency, native_currency, sum, sum_native_currency, user_id) => addWallet(city, currency, native_currency, sum, sum_native_currency, user_id)} /> </Route>
           <Route path ="/newtransaction"> <NewTransaction addExpense={(date, category, amount, mount_native_currency , notes, wallet_id) => addExpense(date, category, amount, mount_native_currency , notes, wallet_id)} /> </Route>
           <Route path ="/exchangerates"> <ExchangeRates currency={currency} /> </Route>
