@@ -1,24 +1,77 @@
+html {
+  background-color: rgb(224, 224, 224);
+}
+
 .App {
+  background-color: rgb(224, 224, 224);
+  font-family: "Quicksand", sans-serif;
+}
+
+.travellet {
   text-align: center;
-  border: 1px solid black;
-  border-radius: 10px;
-  margin: 100px;
-  padding: 10px 100px;
+  border: 1px solid rgb(224, 224, 224);
+  border-radius: 40px;
+  min-height: 110vh;
+  width: 60vh;
+  margin: 0 auto;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  background-color: rgb(234, 234, 234);
+  letter-spacing: 1.2px;
+}
+
+.menu {
+  background-color: rgb(42, 41, 46);
+  height: 60px;
+  border-radius: 30px 30px 0 0;
+  color: white;
+}
+.title {
+  margin: 30px;
+  text-align: left;
+  font-size: 30px;
 }
 
 ul {
   list-style: none;
+  padding: 0px !important;
 }
 
 .button-list {
-  display: block;
-  margin: 20px;
   border: 1px solid lightblue;
   border-radius: 5px;
+  font-size: 14px;
 }
 
+.wallet-list {
+  background-color: rgba(240, 240, 240, 0.973);
+  border-radius: 10px;
+  margin: 10px;
+  padding: 20px;
+  padding-bottom: 5px;
+}
+
+.wallet-list h2 {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.wallet-list li {
+  font-size: 12px;
+  padding: 5px;
+}
 .wallet-buttons {
-  padding: 10px;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+}
+
+.wallet-buttons button {
+  font-size: 10px;
+  margin: 6px;
+  font-weight: bold;
+  letter-spacing: 0.7px;
+}
+
+li {
+  margin: 10px;
 }

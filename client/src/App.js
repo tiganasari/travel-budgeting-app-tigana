@@ -16,8 +16,6 @@ const [expenses, setExpenses] = useState([]);
 const [currency, setCurrency] = useState(0);
 const [error, setError] = useState("");
 
-
-const formInitialState = { date: "", category: " ", amount: "", amount_native_currency: "", notes: "", wallet_id: "",};
 // const walletInitialState = { city: "", currency: "", native_currency: "",sum :" ", sum_native_currency:" ", user_id:"" };
 // const [formData, setFormData] = useState(formInitialState);
 // const [walletData, setWalletData] = useState(walletInitialState)
@@ -62,22 +60,6 @@ const getWallets = () => {
 
 
 
-  // const handleInputChange = (event) => {
-  //   let { name, value } = event.target;
-    
-  //   setFormData({ ... formData,  [name]: value});
-  // }
-
-
-  //  const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   addExpense(formData.date, formData.category,formData.amount, 0, formData.notes, walletId );
-  //   setFormData(formInitialState);
-  // };
-  
-
- 
-
   const addExpense = async (date, category, amount, amount_native_currency, notes, wallet_id) => {
     let expense = { date, category, amount, amount_native_currency, notes, wallet_id};
     let options = { method: "POST",
@@ -108,6 +90,7 @@ const getWallets = () => {
 
   const handleId = (id) => {
     setWalletId(id)
+    console.log(walletId);
 
   }
 
@@ -178,8 +161,10 @@ const sumWallet = () => {
   return (
     <Router> 
       <div className="App">
-   
-      <h1> TRAVEL EXPENSE TRACKER APP</h1>
+      <div className="travellet"> 
+      <div className="menu"> 
+      </div>
+      <h1 className="title"> Hello, Tigana! </h1>
 
       <Switch>
           <Route path ="/" exact> <WalletList wallets={wallets} handleId={(id) => handleId(id)} walletId={walletId} /> </Route> 
@@ -189,7 +174,8 @@ const sumWallet = () => {
           <Route path ="/exchangerates"> <ExchangeRates currency={currency} /> </Route>
       </Switch>  
 
-
+   
+    </div>
     </div>
     </Router>
 
