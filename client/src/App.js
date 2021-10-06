@@ -6,6 +6,7 @@ import NewTransaction from "./components/NewTransaction";
 import WalletList from "./components/WalletList";
 import ExchangeRates from "./components/ExchangeRates";
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {
@@ -18,7 +19,7 @@ const [error, setError] = useState("");
 
 const formInitialState = { date: "", category: " ", amount: "", amount_native_currency: "", notes: "", wallet_id: "",};
 // const walletInitialState = { city: "", currency: "", native_currency: "",sum :" ", sum_native_currency:" ", user_id:"" };
-const [formData, setFormData] = useState(formInitialState);
+// const [formData, setFormData] = useState(formInitialState);
 // const [walletData, setWalletData] = useState(walletInitialState)
 const [walletId, setWalletId] = useState(0);
 // const [sumWallet, setSumWallet] = useState(0);
@@ -60,23 +61,19 @@ const getWallets = () => {
   };
 
 
-  const onSelectWallet = (id) => {
-    setWalletId(id);
-    console.log(walletId)
-  }
 
-  const handleInputChange = (event) => {
-    let { name, value } = event.target;
+  // const handleInputChange = (event) => {
+  //   let { name, value } = event.target;
     
-    setFormData({ ... formData,  [name]: value});
-  }
+  //   setFormData({ ... formData,  [name]: value});
+  // }
 
 
-   const handleSubmit = (event) => {
-    event.preventDefault();
-    addExpense(formData.date, formData.category,formData.amount, 0, formData.notes, walletId );
-    setFormData(formInitialState);
-  };
+  //  const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   addExpense(formData.date, formData.category,formData.amount, 0, formData.notes, walletId );
+  //   setFormData(formInitialState);
+  // };
   
 
  
@@ -109,7 +106,10 @@ const getWallets = () => {
       }
   }
 
+  const handleId = (id) => {
+    setWalletId(id)
 
+  }
 
 
   //try out static external API call - USD to GBP
@@ -180,16 +180,20 @@ const sumWallet = () => {
       <div className="App">
    
       <h1> TRAVEL EXPENSE TRACKER APP</h1>
+
       <Switch>
-          <Route path ="/" exact> <WalletList wallets={wallets}/> </Route> 
-          <Route path ="/walletdetail"> <WalletDetail expenses={expenses} /> </Route>
+          <Route path ="/" exact> <WalletList wallets={wallets} handleId={(id) => handleId(id)} walletId={walletId} /> </Route> 
+          <Route path ="/walletdetail"> <WalletDetail expenses={expenses} /> </Route> 
           <Route path ="/newwallet" > <NewWallet addWallet={(city, currency, native_currency, sum, sum_native_currency, user_id) => addWallet(city, currency, native_currency, sum, sum_native_currency, user_id)} /> </Route>
           <Route path ="/newtransaction"> <NewTransaction addExpense={(date, category, amount, mount_native_currency , notes, wallet_id) => addExpense(date, category, amount, mount_native_currency , notes, wallet_id)} /> </Route>
           <Route path ="/exchangerates"> <ExchangeRates currency={currency} /> </Route>
-
       </Switch>  
+
+
     </div>
     </Router>
+
+    
   );
 }
 

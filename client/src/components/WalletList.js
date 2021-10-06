@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
+// import WalletDetail from  "./components/WalletDetail";
 
-export const WalletList = ({wallets}) => {
-    const [walletId, setWalletId] = useState(0);
-
+export const WalletList = ({wallets, handleId, walletId}) => {
+  
     const onSelectWallet = (id) => {
-    setWalletId(id);
-    console.log(walletId)
+    handleId(id);
   }
 
     return (
@@ -14,27 +13,31 @@ export const WalletList = ({wallets}) => {
         <h2>Available wallets</h2>
       <ul>
         {wallets.length > 0 && wallets.map((i) => 
-        <li id={i.id}> {i.city} | {i.currency} to {i.native_currency} |  wallet sum {i.sum}
-        <button key={i.id} onClick={() => onSelectWallet(i.id)}> view</button></li>)}
+        <li className="button-list" id={i.id}> {i.city} | {i.currency} to {i.native_currency} 
+        <button key={i.id} className="btn btn-light" onClick={() => onSelectWallet(i.id)}> view</button></li>)}
       </ul>
+
+      <div className="wallet-buttons">
+
+      
        <Link to="/newwallet"> 
-        <button onClick= " ">Add a new Wallet</button>
+        <button className="btn btn-light">Add a new Wallet</button>
         </Link>
 
         {/* move this button to WalletDetail component  */}
        <Link to="/newtransaction"> 
-        <button onClick= " ">Add a new transaction</button>
+        <button type="button" className="btn btn-light">Add a new transaction</button>
         </Link> 
 
         <Link to="/exchangerates"> 
-        <button onClick= " ">Live exchange rates</button>
+        <button className="btn btn-light">Live exchange rates</button>
         </Link> 
+        
+        {/* <Link to="/walletdetail"> 
+        {/* <WalletDetail className="btn btn-light"/> */}
+        {/* </Link>  */} 
 
-        <Link to="/walletdetail"> 
-        <button onClick= " ">Wallet Detail</button>
-        </Link> 
-
-
+      </div>    
            
   </div>
 

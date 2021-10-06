@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 // import NewTransaction from "./components/NewTransaction"; -> doesnt work, check path
 
 export const WalletDetail = ({expenses}) => {

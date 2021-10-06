@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "bootstrap": "^5.1.2",
     "dotenv": "^10.0.0",
     "migrate": "node model/database.js",
     "mysql": "^2.18.1",
