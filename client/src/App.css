@@ -95,4 +95,47 @@ li {
 
 .wallet-detail h2 {
   margin: 20px;
+  text-align: left;
+}
+
+.wallet-overview {
+  background-color: rgba(40, 148, 58, 0.973);
+  border-radius: 10px;
+  color: rgba(240, 240, 240, 0.973);
+  font-weight: bold;
+  text-align: center;
+  padding: 20px;
+  margin: 20px;
+  font-size: 20px;
+}
+
+.wallet-overview h2 {
+  text-align: center;
+  font-size: 16px;
+}
+
+.btn-success {
+  background-color: rgba(40, 148, 58, 0.973) !important;
+}
+
+.new-transaction {
+  text-align: center;
+  margin: 20px;
+  font-size: 13px;
+  display: flex;
+  justify-content: right;
+}
+
+.btn-light {
+  font-size: 15px !important;
+  padding: 8px 12px !important;
+  background-color: #ffc107 !important;
+  border: none !important;
+}
+
+.new-transaction p {
+  position: absolute;
+  top: 63%;
+  left: 51%;
+  font-weight: bold;
 }

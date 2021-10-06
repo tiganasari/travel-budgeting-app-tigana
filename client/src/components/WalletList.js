@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 // import WalletDetail from  "./components/WalletDetail";
 
-export const WalletList = ({wallets, handleId, walletId}) => {
+export const WalletList = ({wallets, getCity}) => {
   
-    const onSelectWallet = (id) => {
-    handleId(id);
+    const onSelectWallet = (city) => {
+    getCity(city);
   }
 
     return (
@@ -15,7 +15,7 @@ export const WalletList = ({wallets, handleId, walletId}) => {
         <h2>Available wallets</h2>
         <ul>
           {wallets.length > 0 && wallets.map((i) => 
-          <li className="button-list" key={i.id} onClick={() => onSelectWallet(i.id)}>
+          <li className="button-list" key={i.id} onClick={() => onSelectWallet(i.city)}>
             <Link className="link" to={`walletdetail/${i.id}`}>
            {i.city} | {i.currency} to {i.native_currency} 
             </Link>

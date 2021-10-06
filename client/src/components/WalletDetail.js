@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 // import NewTransaction from "./components/NewTransaction"; -> doesnt work, check path
 
-const WalletDetail = ({expenses}) => {
+const WalletDetail = ({expenses, walletId, city}) => {
     const { id } = useParams();
     const [result, setResult] = useState([]);
   
@@ -37,9 +37,19 @@ const WalletDetail = ({expenses}) => {
     
 
     return (
-        <div className="wallet-detail">
-        <h2>Transactions</h2>  
+        <div className="wallet-detail">  
+        <h2>{city} London</h2>  
 
+        <div className="wallet-overview">
+          {/* Make dynamic SUM PLEASE */}
+          <h2> Total spending </h2>
+          <p>£709.80 | $1180.09</p>
+        </div>
+        <div className="new-transaction">
+          <p>New expense</p>
+          <button className="btn btn-light">+</button>
+          
+        </div>
         <div className="transaction-list"> 
          <ul>
         {result.map((i) => 
