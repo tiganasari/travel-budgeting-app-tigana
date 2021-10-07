@@ -63,8 +63,8 @@ export const NewTransaction = (props) => {
             <button className="btn btn-light new-button" onClick={handleSubmit} type ="submit">
             submit
             </button>
-
-            <h2>{props.cityId}</h2>
+           
+            <p>{props.cityId}</p>
             </div>
           </form>
 

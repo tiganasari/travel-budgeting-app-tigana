@@ -3,15 +3,13 @@ import { useParams, Link } from 'react-router-dom';
 
 // import NewTransaction from "./components/NewTransaction"; -> doesnt work, check path
 
-const WalletDetail = ({expenses, walletId, cityName}) => {
+const WalletDetail = ({expenses, cityId, cityName}) => {
     const { id } = useParams();
     const [result, setResult] = useState([]);
+    const [sumTrans, setSumTrans] = useState(5);
   
     
-    useEffect(() => {
-    getTransactions(id);
-  }, []);
-
+  
     const onSelectItem = (id) => {
  
   }
@@ -36,7 +34,21 @@ const WalletDetail = ({expenses, walletId, cityName}) => {
       });
     }
 
-    
+    const sumWallet = () => {
+        let sum = 0;
+        for (let i=0; i < expenses.length; i++) {
+          if(expenses[i].wallet_id == cityId) {
+          sum += Number(expenses[i].amount);
+        }
+          }
+          setSumTrans(sum.toFixed(2));
+    }
+
+  useEffect(() => {
+    getTransactions(id);
+    sumWallet();
+  }, []);
+
 
     return (
         <div className="wallet-detail">  
@@ -50,7 +62,7 @@ const WalletDetail = ({expenses, walletId, cityName}) => {
         <div className="wallet-overview">
           {/* Make dynamic SUM PLEASE */}
           <h2> Total spending </h2>
-          <p>£709.80 | $1180.09</p>
+          <p>{sumTrans} | $1180.09</p>
         </div>
         <div className="new-transaction">
           <p>New expense</p>
@@ -61,7 +73,7 @@ const WalletDetail = ({expenses, walletId, cityName}) => {
         <div className="transaction-list"> 
          <ul>
         {result.map((i) => 
-        <li className="transaction" key={i.id} onClick={() => onSelectItem(i.id)}> {i.date} | {i.notes} £{i.amount.toFixed(2)} | 
+        <li className="transaction" key={i.id} onClick={() => onSelectItem(i.id)}> {i.date} | {i.notes} {i.amount.toFixed(2)} | 
          {/* {(i.amount) / currency}   */}
          </li>)}
       </ul>

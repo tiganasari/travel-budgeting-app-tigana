@@ -24,6 +24,8 @@ const [error, setError] = useState("");
 const [walletId, setWalletId] = useState(0);
 const [cityName, setCityName] = useState(" ");
 const [cityId, setCityId] = useState(0)
+const [currencyName, setCurrencyName]= useState("");
+const [nativeCurrencyName, setNativeCurrencyName] = useState("");
 
 
 // const [sumWallet, setSumWallet] = useState(0);
@@ -106,6 +108,16 @@ const getWallets = () => {
     console.log(id)
   }
 
+    const getCurrencyName = (currency) => {
+    setCurrencyName(currency);
+    console.log(currency);
+
+  }
+    const getNativeCurrencyName = (native) => {
+    setNativeCurrencyName(native);
+    console.log(native);
+
+  }
 
   //try out static external API call - USD to GBP
 async function getCurrency(currency) {
@@ -132,21 +144,20 @@ useEffect(() => {
     getWallets();
     getExpenses();
     getCurrency();
-    sumWallet();
   }, []);
 
 
-const sumWallet = () => {
-  wallets.map (wallets => {
-    expenses.map( expenses => {
-      if(wallets.id === expenses.wallet_id) {
-        let walletSum = 0;
-        walletSum += expenses.amount;
-        console.log(walletSum)
-      }
-    })
-  })
-}
+// const sumWallet = () => {
+//   wallets.map (wallets => {
+//     expenses.map( expenses => {
+//       if(wallets.id === expenses.wallet_id) {
+//         let walletSum = 0;
+//         walletSum += expenses.amount;
+//         console.log(walletSum)
+//       }
+//     })
+//   })
+// }
 
 //component wallets - render in app js as a list
 //inside of wallets component - fetch get wallets 
@@ -179,9 +190,9 @@ const sumWallet = () => {
       
 
       <Switch>
-          <Route path ="/" exact> <WalletList wallets={wallets} getCityId= {(id) => getCityId (id) } getCity={(name) => getCity(name)} walletId={walletId} /> </Route> 
+          <Route path ="/" exact> <WalletList wallets={wallets} getNativeCurrencyName ={(native) => getNativeCurrencyName(native)} getCurrencyName ={(currency) => getCurrencyName(currency)} getCityId= {(id) => getCityId (id) } getCity={(name) => getCity(name)} walletId={walletId} /> </Route> 
           {/* <Route path ="/walletdetail"> <WalletDetail expenses={expenses} /> </Route>  */}
-          <Route path ="/walletdetail/:id"> <WalletDetail expenses={expenses} walletId={walletId} cityName={cityName}/> </Route> 
+          <Route path ="/walletdetail/:id"> <WalletDetail expenses={expenses} cityId={cityId} cityName={cityName}/> </Route> 
           <Route path ="/newwallet" > <NewWallet addWallet={(city, currency, native_currency, sum, sum_native_currency, user_id) => addWallet(city, currency, native_currency, sum, sum_native_currency, user_id)} /> </Route>
           <Route path ="/newtransaction"> <NewTransaction cityId={cityId} addExpense={(date, category, amount, mount_native_currency , notes, wallet_id) => addExpense(date, category, amount, mount_native_currency , notes, wallet_id)} /> </Route>
           <Route path ="/exchangerates"> <ExchangeRates currency={currency} /> </Route>
