@@ -36,7 +36,24 @@ const [nativeCurrencyName, setNativeCurrencyName] = useState("");
 //replace 34 by hookId 
 //add condition inside addExpense function to avoid new transaction without walletId
 
+async function getCurrency(currency) {
+    let currency_url = "https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=USD&to_currency=GBP&apikey=4E8ZBH6BEU83RWHA";
 
+
+    try {
+    let response = await fetch(currency_url);
+    if(response.ok) {
+    let currencyResult = await response.json();
+    let currency = currencyResult["Realtime Currency Exchange Rate"]["5. Exchange Rate"];
+    setCurrency(currency)
+    // console.log(currency)
+     } else {
+    setError ("server error")
+  }
+    } catch (err) {
+    setError("network error");
+    }
+    }
 
 const getWallets = () => {
   // console.log('hi')
@@ -121,7 +138,7 @@ const getWallets = () => {
 
   //try out static external API call - USD to GBP
 async function getCurrency(currency) {
-  let currency_url = "https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=USD&to_currency=GBP&apikey=4E8ZBH6BEU83RWHA";
+  let currency_url = `https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=${currencyName}&to_currency=${nativeCurrencyName}&apikey=4E8ZBH6BEU83RWHA`;
 
 
 try {
@@ -192,9 +209,13 @@ useEffect(() => {
       <Switch>
           <Route path ="/" exact> <WalletList wallets={wallets}  getCityId= {(id) => getCityId (id) } getCity={(name) => getCity(name)} walletId={walletId} getCurrencyName={(currency) => getCurrencyName (currency)} getNativeCurrencyName={(native) => getNativeCurrencyName (native)} /> </Route> 
           {/* <Route path ="/walletdetail"> <WalletDetail expenses={expenses} /> </Route>  */}
-          <Route path ="/walletdetail/:id"> <WalletDetail nativeCurrencyName ={nativeCurrencyName} currencyName ={currencyName} expenses={expenses} cityId={cityId} cityName={cityName}/> </Route> 
+          
+          <Route path ="/walletdetail/:id"> <WalletDetail nativeCurrencyName ={nativeCurrencyName} currencyName ={currencyName} expenses={expenses} cityId={cityId} cityName={cityName} error={error} currency ={currency}/> </Route> 
+         
           <Route path ="/newwallet" > <NewWallet addWallet={(city, currency, native_currency, sum, sum_native_currency, user_id) => addWallet(city, currency, native_currency, sum, sum_native_currency, user_id)} /> </Route>
+          
           <Route path ="/newtransaction"> <NewTransaction cityId={cityId} addExpense={(date, category, amount, mount_native_currency , notes, wallet_id) => addExpense(date, category, amount, mount_native_currency , notes, wallet_id)} /> </Route>
+          
           <Route path ="/exchangerates"> <ExchangeRates currency={currency} /> </Route>
       </Switch>  
 

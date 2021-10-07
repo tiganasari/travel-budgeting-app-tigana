@@ -3,24 +3,13 @@ import { useParams, Link } from 'react-router-dom';
 
 // import NewTransaction from "./components/NewTransaction"; -> doesnt work, check path
 
-const WalletDetail = ({expenses, cityId, cityName , currencyName, nativeCurrencyName}) => {
+const WalletDetail = ({expenses, cityId, cityName , currencyName, nativeCurrencyName, currency}) => {
     const { id } = useParams();
     const [result, setResult] = useState([]);
     const [sumTrans, setSumTrans] = useState(5);
   
     
-  
-    const onSelectItem = (id) => {
- 
-  }
-
-    // const onSelectItem = (id) => {
-    // // console.log(id);
-    // let result = expenses.filter(expense => expense.id === id)
-    // setResult(result);
-    // console.log(result[0].category);
     
-    // }
     const getTransactions = (walletId) => {
       fetch(`/expenses/${walletId}`)
       .then((response) => response.json())
@@ -42,6 +31,10 @@ const WalletDetail = ({expenses, cityId, cityName , currencyName, nativeCurrency
         }
           }
           setSumTrans(sum.toFixed(2));
+    }
+
+    const onSelectItem = () => {
+
     }
 
   useEffect(() => {
@@ -74,8 +67,8 @@ const WalletDetail = ({expenses, cityId, cityName , currencyName, nativeCurrency
         <div className="transaction-list"> 
          <ul>
         {result.map((i) => 
-        <li className="transaction" key={i.id} onClick={() => onSelectItem(i.id)}> {i.date} | {i.notes} {i.amount.toFixed(2)} | 
-         {/* {(i.amount) / currency}   */}
+        <li className="transaction" key={i.id} onClick={() => onSelectItem(i.id)}> {i.date} {i.notes} <strong> {i.amount.toFixed(2)} </strong>| <strong>
+         {((i.amount) * currency).toFixed(2)}  </strong>
          </li>)}
       </ul>
       </div>

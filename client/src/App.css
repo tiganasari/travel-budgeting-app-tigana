@@ -109,8 +109,9 @@ li {
   color: rgba(240, 240, 240, 0.973);
   font-weight: bold;
   text-align: center;
-  padding: 20px;
+  padding: 12px;
   margin: 20px;
+  padding-bottom: 5px;
   font-size: 20px;
 }
 
@@ -141,7 +142,7 @@ li {
 
 .new-transaction p {
   position: absolute;
-  top: 61%;
+  top: 65%;
   left: 49%;
   font-weight: bold;
 }
