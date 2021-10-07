@@ -190,9 +190,9 @@ useEffect(() => {
       
 
       <Switch>
-          <Route path ="/" exact> <WalletList wallets={wallets} getNativeCurrencyName ={(native) => getNativeCurrencyName(native)} getCurrencyName ={(currency) => getCurrencyName(currency)} getCityId= {(id) => getCityId (id) } getCity={(name) => getCity(name)} walletId={walletId} /> </Route> 
+          <Route path ="/" exact> <WalletList wallets={wallets}  getCityId= {(id) => getCityId (id) } getCity={(name) => getCity(name)} walletId={walletId} getCurrencyName={(currency) => getCurrencyName (currency)} getNativeCurrencyName={(native) => getNativeCurrencyName (native)} /> </Route> 
           {/* <Route path ="/walletdetail"> <WalletDetail expenses={expenses} /> </Route>  */}
-          <Route path ="/walletdetail/:id"> <WalletDetail expenses={expenses} cityId={cityId} cityName={cityName}/> </Route> 
+          <Route path ="/walletdetail/:id"> <WalletDetail nativeCurrencyName ={nativeCurrencyName} currencyName ={currencyName} expenses={expenses} cityId={cityId} cityName={cityName}/> </Route> 
           <Route path ="/newwallet" > <NewWallet addWallet={(city, currency, native_currency, sum, sum_native_currency, user_id) => addWallet(city, currency, native_currency, sum, sum_native_currency, user_id)} /> </Route>
           <Route path ="/newtransaction"> <NewTransaction cityId={cityId} addExpense={(date, category, amount, mount_native_currency , notes, wallet_id) => addExpense(date, category, amount, mount_native_currency , notes, wallet_id)} /> </Route>
           <Route path ="/exchangerates"> <ExchangeRates currency={currency} /> </Route>
