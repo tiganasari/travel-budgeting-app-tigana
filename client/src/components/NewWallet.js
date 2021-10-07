@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import {  Link } from 'react-router-dom';
 
 export const NewWallet = (props) => {
     const walletInitialState = { city: "", currency: "", native_currency: "",sum :" ", sum_native_currency:" ", user_id:"" };
@@ -20,33 +20,39 @@ export const NewWallet = (props) => {
 
 
     return (
-        <div>
-    
-
+        <div className="new-wallet">
+          <div className="nav"> <p> <Link className="menu-nav" to={`/`} > &lt; wallets </Link>
+        </p> 
+        </div>
             <h2>
-              Create a new wallet
+              New wallet
             </h2>
-            <form>  
-             <label>New Wallet</label>
-            <input type="text" onChange={(e) => handleInputChangeWallet(e)} name="city" value= {walletData.city} placeholder="city"/> 
+            <form className="form">  
+            <input type="text" onChange={(e) => handleInputChangeWallet(e)} name="city" value= {walletData.city} placeholder="Enter a city"/> 
+            <div className="currency-label">  
+            <label>Currency </label>
+            <select className="currency" id="currency" name="currency" onChange={(e) => handleInputChangeWallet(e)}> 
+            <option value={"GBP"}>Poundsterling</option>
+            <option value={"EUR"}>Euros</option>
+            <option value={"USD"}>Dollars</option>
+            <option value={"IDR"}>Rupiah</option>
+            </select>
+            </div>
 
-          
-             <select id="currency" name="currency" onChange={(e) => handleInputChangeWallet(e)}> 
+            <div className="currency-label">
+            <label>Native currency </label>
+            <select className="native-currency" id="native_currency" name="native_currency" onChange={(e) => handleInputChangeWallet(e)}> 
             <option value={"GBP"}>Poundsterling</option>
             <option value={"EUR"}>Euros</option>
             <option value={"USD"}>Dollars</option>
             <option value={"IDR"}>Rupiah</option>
             </select>
-  
-                <select id="native_currency" name="native_currency" onChange={(e) => handleInputChangeWallet(e)}> 
-            <option value={"GBP"}>Poundsterling</option>
-            <option value={"EUR"}>Euros</option>
-            <option value={"USD"}>Dollars</option>
-            <option value={"IDR"}>Rupiah</option>
-            </select>
-              <button onClick={handleSubmitWallet} type ="submit">
+            </div>
+            <div class="col text-center">
+            <button className=" btn btn-light new-button" onClick={handleSubmitWallet} type ="submit">
             submit
             </button>
+            </div>
             </form>
             
            

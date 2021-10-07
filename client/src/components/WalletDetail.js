@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 // import NewTransaction from "./components/NewTransaction"; -> doesnt work, check path
 
@@ -38,6 +38,10 @@ const WalletDetail = ({expenses, walletId, city}) => {
 
     return (
         <div className="wallet-detail">  
+
+        <div className="nav"> <p> <Link className="menu-nav" to={`/`} > &lt; wallets </Link>
+        </p> 
+        </div>
         <h2>{city} London</h2>  
 
         <div className="wallet-overview">
