@@ -22,7 +22,8 @@ const [error, setError] = useState("");
 // const [formData, setFormData] = useState(formInitialState);
 // const [walletData, setWalletData] = useState(walletInitialState)
 const [walletId, setWalletId] = useState(0);
-const [cityName, setCityName] = useState(0);
+const [cityName, setCityName] = useState(" ");
+const [cityId, setCityId] = useState(0)
 
 
 // const [sumWallet, setSumWallet] = useState(0);
@@ -66,7 +67,7 @@ const getWallets = () => {
 
 
   const addExpense = async (date, category, amount, amount_native_currency, notes, wallet_id) => {
-    let expense = { date, category, amount, amount_native_currency, notes, wallet_id};
+    let expense = {date, category, amount, amount_native_currency, notes, wallet_id};
     let options = { method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(expense)};
@@ -95,8 +96,14 @@ const getWallets = () => {
 
   const getCity = (name) => {
     setCityName(name)
-    console.log(cityName);
+    console.log(name);
 
+  }
+
+  const getCityId = (id) => {
+    setCityId(id)
+    console.log(cityId)
+    console.log(id)
   }
 
 
@@ -172,9 +179,9 @@ const sumWallet = () => {
       
 
       <Switch>
-          <Route path ="/" exact> <WalletList wallets={wallets} getCity={(name) => getCity(name)} walletId={walletId} /> </Route> 
+          <Route path ="/" exact> <WalletList wallets={wallets} getCityId= {(id) => getCityId (id) } getCity={(name) => getCity(name)} walletId={walletId} /> </Route> 
           {/* <Route path ="/walletdetail"> <WalletDetail expenses={expenses} /> </Route>  */}
-          <Route path ="/walletdetail/:id"> <WalletDetail expenses={expenses} walletId={walletId}/> </Route> 
+          <Route path ="/walletdetail/:id"> <WalletDetail expenses={expenses} walletId={walletId} cityName={cityName}/> </Route> 
           <Route path ="/newwallet" > <NewWallet addWallet={(city, currency, native_currency, sum, sum_native_currency, user_id) => addWallet(city, currency, native_currency, sum, sum_native_currency, user_id)} /> </Route>
           <Route path ="/newtransaction"> <NewTransaction addExpense={(date, category, amount, mount_native_currency , notes, wallet_id) => addExpense(date, category, amount, mount_native_currency , notes, wallet_id)} /> </Route>
           <Route path ="/exchangerates"> <ExchangeRates currency={currency} /> </Route>

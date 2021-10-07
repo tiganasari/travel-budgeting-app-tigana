@@ -15,7 +15,7 @@ export const NewTransaction = (props) => {
 
     const handleSubmit = (event) => {
     event.preventDefault();
-    props.addExpense(formData.date, formData.category,formData.amount, 0, formData.notes, 34 );
+    props.addExpense(formData.date, formData.category,formData.amount, 0, formData.notes, props.setCityId);
     setFormData(formInitialState);
   };
     

@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 // import WalletDetail from  "./components/WalletDetail";
 
-export const WalletList = ({wallets, getCity}) => {
+export const WalletList = (props) => {
   
-    const onSelectWallet = (city) => {
-    getCity(city);
+    const onSelectWallet = (city, id) => {
+    props.getCity(city);
+    props.getCityId(id);
   }
+
 
     return (
       <div>
@@ -14,8 +16,8 @@ export const WalletList = ({wallets, getCity}) => {
         <div className="wallet-list">
         <h2>Available wallets</h2>
         <ul>
-          {wallets.length > 0 && wallets.map((i) => 
-          <li className="button-list" key={i.id} onClick={() => onSelectWallet(i.city)}>
+          {props.wallets.length > 0 && props.wallets.map((i) => 
+          <li className="button-list" key={i.id} onClick={() => onSelectWallet(i.city, i.id)}>
             <Link className="link" to={`walletdetail/${i.id}`}>
            {i.city} | {i.currency} to {i.native_currency} 
             </Link>

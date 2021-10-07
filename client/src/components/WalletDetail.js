@@ -3,24 +3,26 @@ import { useParams, Link } from 'react-router-dom';
 
 // import NewTransaction from "./components/NewTransaction"; -> doesnt work, check path
 
-const WalletDetail = ({expenses, walletId, city}) => {
+const WalletDetail = ({expenses, walletId, cityName}) => {
     const { id } = useParams();
     const [result, setResult] = useState([]);
   
     
     useEffect(() => {
-    console.log(id)
     getTransactions(id);
   }, []);
 
     const onSelectItem = (id) => {
-    // console.log(id);
-    let result = expenses.filter(expense => expense.id === id)
-    setResult(result);
-    console.log(result[0].category);
-    
-    
+ 
   }
+
+    // const onSelectItem = (id) => {
+    // // console.log(id);
+    // let result = expenses.filter(expense => expense.id === id)
+    // setResult(result);
+    // console.log(result[0].category);
+    
+    // }
     const getTransactions = (walletId) => {
       fetch(`/expenses/${walletId}`)
       .then((response) => response.json())
@@ -42,7 +44,8 @@ const WalletDetail = ({expenses, walletId, city}) => {
         <div className="nav"> <p> <Link className="menu-nav" to={`/`} > &lt; wallets </Link>
         </p> 
         </div>
-        <h2>{city} London</h2>  
+
+        <h2 className="cityName">{cityName}</h2>  
 
         <div className="wallet-overview">
           {/* Make dynamic SUM PLEASE */}
