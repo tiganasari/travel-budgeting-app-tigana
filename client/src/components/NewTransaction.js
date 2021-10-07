@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { Link } from 'react-router-dom';
 
 export const NewTransaction = (props) => {
 
@@ -21,13 +21,16 @@ export const NewTransaction = (props) => {
     
 
     return (
-        <div>
-    
- <h2>Create a new transaction</h2>
-          <form>
-            <label>New Transaction</label>
-            <input type="date"
-            onChange={(e) => handleInputChange(e)} name="date"  placeholder="date">
+        <div className="add-transaction">
+          {/* Fix link to go to that specific wallet Id */}
+        <div className="nav"> <p> <Link className="menu-nav" to={`/walletdetail/34`} > &lt; expenses </Link>
+        </p> 
+        </div>
+        <h2>New expense</h2>
+          <form className="form">
+            <label></label>
+            <input  type="date"
+            onChange={(e) => handleInputChange(e)} name="date"  placeholder="date" className="date">
             </input>
             
             {/* <input type="text"
@@ -56,10 +59,11 @@ export const NewTransaction = (props) => {
             {/* <input type="number"
             onChange={(e) => handleInputChange(e)} name="wallet_id" value= {formData.wallet_id} placeholder="wallet">
             </input> */}
-
-            <button onClick={handleSubmit} type ="submit">
+            <div class="col text-center">
+            <button className="btn btn-light new-button" onClick={handleSubmit} type ="submit">
             submit
             </button>
+            </div>
           </form>
 
             

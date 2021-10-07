@@ -51,8 +51,9 @@ const WalletDetail = ({expenses, walletId, city}) => {
         </div>
         <div className="new-transaction">
           <p>New expense</p>
+           <Link to={`/newtransaction`} >
           <button className="btn btn-light">+</button>
-          
+          </Link>
         </div>
         <div className="transaction-list"> 
          <ul>
