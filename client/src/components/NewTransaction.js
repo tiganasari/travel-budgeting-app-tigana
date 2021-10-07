@@ -15,7 +15,7 @@ export const NewTransaction = (props) => {
 
     const handleSubmit = (event) => {
     event.preventDefault();
-    props.addExpense(formData.date, formData.category,formData.amount, 0, formData.notes, props.setCityId);
+    props.addExpense(formData.date, formData.category,formData.amount, 0, formData.notes, props.cityId);
     setFormData(formInitialState);
   };
     
@@ -23,7 +23,7 @@ export const NewTransaction = (props) => {
     return (
         <div className="add-transaction">
           {/* Fix link to go to that specific wallet Id */}
-        <div className="nav"> <p> <Link className="menu-nav" to={`/walletdetail/34`} > &lt; expenses </Link>
+        <div className="nav"> <p> <Link className="menu-nav" to={`/walletdetail/${props.cityId}`} > &lt; expenses </Link>
         </p> 
         </div>
         <h2>New expense</h2>
@@ -63,6 +63,8 @@ export const NewTransaction = (props) => {
             <button className="btn btn-light new-button" onClick={handleSubmit} type ="submit">
             submit
             </button>
+
+            <h2>{props.cityId}</h2>
             </div>
           </form>
 

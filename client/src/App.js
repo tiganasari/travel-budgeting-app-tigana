@@ -183,7 +183,7 @@ const sumWallet = () => {
           {/* <Route path ="/walletdetail"> <WalletDetail expenses={expenses} /> </Route>  */}
           <Route path ="/walletdetail/:id"> <WalletDetail expenses={expenses} walletId={walletId} cityName={cityName}/> </Route> 
           <Route path ="/newwallet" > <NewWallet addWallet={(city, currency, native_currency, sum, sum_native_currency, user_id) => addWallet(city, currency, native_currency, sum, sum_native_currency, user_id)} /> </Route>
-          <Route path ="/newtransaction"> <NewTransaction addExpense={(date, category, amount, mount_native_currency , notes, wallet_id) => addExpense(date, category, amount, mount_native_currency , notes, wallet_id)} /> </Route>
+          <Route path ="/newtransaction"> <NewTransaction cityId={cityId} addExpense={(date, category, amount, mount_native_currency , notes, wallet_id) => addExpense(date, category, amount, mount_native_currency , notes, wallet_id)} /> </Route>
           <Route path ="/exchangerates"> <ExchangeRates currency={currency} /> </Route>
       </Switch>  
 
