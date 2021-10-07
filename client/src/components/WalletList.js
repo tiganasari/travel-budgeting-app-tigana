@@ -4,13 +4,41 @@ import { Link } from 'react-router-dom';
 
 export const WalletList = (props) => {
   
+  const [currency, setCurrency] = useState(0);
+
     const onSelectWallet = (city, id, currency, native) => {
     props.getCity(city);
     props.getCityId(id);
     props.getCurrencyName(currency);
     props.getNativeCurrencyName(native)
+  
   }
+  useEffect(() => {
+    // getCurrency(props.currency, props.native);
+    // console.log(props.currency);
+    // console.log(props.native);
+    
+  }, []);
 
+//   async function getCurrency(currency, native) {
+
+//   let currency_url = `https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=${currency}&to_currency=${native}}&apikey=4E8ZBH6BEU83RWHA`;
+
+
+// try {
+//   let response = await fetch(currency_url);
+//   if(response.ok) {
+//     let currencyResult = await response.json();
+//     let currency = currencyResult["Realtime Currency Exchange Rate"]["5. Exchange Rate"];
+//     setCurrency(currency)
+//     console.log(currency)
+//   } else {
+//     // setError ("server error")
+//   }
+// } catch (err) {
+//   // setError("network error");
+// }
+// }
 
     return (
       <div>

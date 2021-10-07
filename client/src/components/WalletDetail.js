@@ -3,11 +3,37 @@ import { useParams, Link } from 'react-router-dom';
 
 // import NewTransaction from "./components/NewTransaction"; -> doesnt work, check path
 
-const WalletDetail = ({expenses, cityId, cityName , currencyName, nativeCurrencyName, currency}) => {
+const WalletDetail = ({expenses, cityId, cityName , currencyName, nativeCurrencyName, currency, getCurrency}) => {
     const { id } = useParams();
     const [result, setResult] = useState([]);
-    const [sumTrans, setSumTrans] = useState(5);
-  
+    const [sumTrans, setSumTrans] = useState(0);
+    const [sumCurrency, setSumCurrency] = useState(0);
+    const [currencyRate, setCurrencyRate] = useState(0);
+    
+    //Make call backend for the specific wallet 
+    //store currency and native in component
+    //make api call with currency and native
+    //setCurrency, etc
+    //display
+
+    async function getCurrency(currency) {
+    let currency_url = `https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=${currencyName}&to_currency=${nativeCurrencyName}&apikey=4E8ZBH6BEU83RWHA`;
+
+
+    try {
+    let response = await fetch(currency_url);
+    if(response.ok) {
+    let currencyResult = await response.json();
+    let currency = currencyResult["Realtime Currency Exchange Rate"]["5. Exchange Rate"];
+    console.log(currency);
+    setCurrencyRate(currency)
+     } else {
+    // setError ("server error")
+  }
+    } catch (err) {
+    // setError("network error");
+    }
+    }
     
     
     const getTransactions = (walletId) => {
@@ -33,6 +59,12 @@ const WalletDetail = ({expenses, cityId, cityName , currencyName, nativeCurrency
           setSumTrans(sum.toFixed(2));
     }
 
+    const sumWalletCurrency = () => {
+        let sum= 0;
+        sum = sumTrans * currency;
+        setSumCurrency(sum);
+        
+    }
     const onSelectItem = () => {
 
     }
@@ -40,6 +72,9 @@ const WalletDetail = ({expenses, cityId, cityName , currencyName, nativeCurrency
   useEffect(() => {
     getTransactions(id);
     sumWallet();
+    sumWalletCurrency();
+    console.log(currency)
+    getCurrency();
   }, []);
 
 
@@ -56,7 +91,7 @@ const WalletDetail = ({expenses, cityId, cityName , currencyName, nativeCurrency
           {/* Make dynamic SUM PLEASE */}
           <h2> Total spending </h2>
           <p>{currencyName} {sumTrans} </p>
-          <p>{nativeCurrencyName} 880.09</p>
+          <p>{nativeCurrencyName} {sumCurrency}</p>
         </div>
         <div className="new-transaction">
           <p>New expense</p>
@@ -67,8 +102,8 @@ const WalletDetail = ({expenses, cityId, cityName , currencyName, nativeCurrency
         <div className="transaction-list"> 
          <ul>
         {result.map((i) => 
-        <li className="transaction" key={i.id} onClick={() => onSelectItem(i.id)}> {i.date} {i.notes} <strong> {i.amount.toFixed(2)} </strong>| <strong>
-         {((i.amount) * currency).toFixed(2)}  </strong>
+        <li className="transaction" key={i.id} onClick={() => onSelectItem(i.id)}> {i.date} {i.notes} <strong> {i.amount.toFixed(2)} </strong>| 
+        <strong> {((i.amount) *  currencyRate).toFixed(2)} </strong>
          </li>)}
       </ul>
       </div>
