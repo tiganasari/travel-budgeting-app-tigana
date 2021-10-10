@@ -110,6 +110,7 @@ const getWallets = () => {
   }
 
 
+
 useEffect(() => {
     // console.log("goodbye")
     getWallets();
@@ -142,16 +143,7 @@ useEffect(() => {
       </Switch>  
 
       {/* Modal box  */}
-      <button id="myBtn">Open Modal</button>
-
-      <div id="myModal" className="modal">
-
-        <div className="modal-content">
-          <span className="close">&times;</span>
-          <p>New wallet added!</p>
-        </div>
-
-</div>
+     
    
     </div>
     </div>
