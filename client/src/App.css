@@ -5,14 +5,16 @@ html {
 .App {
   background-color: rgb(224, 224, 224);
   font-family: "Quicksand", sans-serif;
+  margin: auto 0;
 }
 
 .travellet {
   text-align: center;
   border: 1px solid rgb(224, 224, 224);
   border-radius: 40px;
-  min-height: 110vh;
-  width: 60vh;
+  /* min-height: 110vh; */
+  width: 365px;
+  height: 700px;
   margin: 0 auto;
   margin-top: 40px;
   margin-bottom: 40px;
@@ -47,7 +49,7 @@ ul {
 .wallet-list {
   background-color: rgba(240, 240, 240, 0.973);
   border-radius: 10px;
-  margin: 10px;
+  margin: 20px;
   padding: 20px;
   padding-bottom: 5px;
 }
@@ -62,6 +64,8 @@ ul {
   padding: 5px;
   background-color: rgb(201, 199, 199);
   color: white;
+  width: 250px;
+  margin: 17px auto;
 }
 
 .link {
@@ -141,28 +145,29 @@ li {
 }
 
 .new-transaction p {
-  position: absolute;
-  top: 65%;
-  left: 49%;
   font-weight: bold;
+  margin: auto 0;
+  padding-right: 10px;
 }
 
 .menu-nav {
-  position: absolute;
-  top: 11%;
-  left: 26%;
   color: rgba(240, 240, 240, 0.973);
   font-weight: bolder;
   font-size: 18px;
   text-decoration: none;
+  position: relative;
+  top: -60px;
 }
 
-.nav {
+.exp-nav {
+  color: rgba(240, 240, 240, 0.973);
+  font-weight: bolder;
+  font-size: 18px;
+  text-decoration: none;
+  position: relative;
+  top: -45px;
+  left: 20px;
 }
-/* .menu-nav :hover {
-  color: red;
-  font-size: 300px;
-} */
 
 .form {
   border-radius: 10px;
@@ -221,4 +226,42 @@ select {
 .cityName {
   margin-left: 20px;
   margin-bottom: 30px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }

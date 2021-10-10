@@ -81,7 +81,8 @@ const WalletDetail = ({expenses, cityId, cityName , currencyName, nativeCurrency
     return (
         <div className="wallet-detail">  
 
-        <div className="nav"> <p> <Link className="menu-nav" to={`/`} > &lt; wallets </Link>
+
+        <div className="nav"  > <p> <Link className="menu-nav" to={`/`} > &lt; wallets </Link>
         </p> 
         </div>
 
@@ -91,7 +92,7 @@ const WalletDetail = ({expenses, cityId, cityName , currencyName, nativeCurrency
           {/* Make dynamic SUM PLEASE */}
           <h2> Total spending </h2>
           <p>{currencyName} {sumTrans} </p>
-          <p>{nativeCurrencyName} {sumCurrency}</p>
+          <p>{nativeCurrencyName} {(sumTrans * currencyRate).toFixed(2)}</p>
         </div>
         <div className="new-transaction">
           <p>New expense</p>

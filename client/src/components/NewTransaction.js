@@ -23,7 +23,7 @@ export const NewTransaction = (props) => {
     return (
         <div className="add-transaction">
           {/* Fix link to go to that specific wallet Id */}
-        <div className="nav"> <p> <Link className="menu-nav" to={`/walletdetail/${props.cityId}`} > &lt; expenses </Link>
+        <div className="nav"> <p> <Link className="exp-nav" to={`/walletdetail/${props.cityId}`} > &lt; expenses </Link>
         </p> 
         </div>
         <h2>New expense</h2>
@@ -64,7 +64,7 @@ export const NewTransaction = (props) => {
             submit
             </button>
            
-            <p>{props.cityId}</p>
+          
             </div>
           </form>
 

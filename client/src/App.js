@@ -17,10 +17,6 @@ const [wallets, setWallets] = useState([]);
 const [expenses, setExpenses] = useState([]);
 const [currency, setCurrency] = useState(0);
 const [error, setError] = useState("");
-
-// const walletInitialState = { city: "", currency: "", native_currency: "",sum :" ", sum_native_currency:" ", user_id:"" };
-// const [formData, setFormData] = useState(formInitialState);
-// const [walletData, setWalletData] = useState(walletInitialState)
 const [walletId, setWalletId] = useState(0);
 const [cityName, setCityName] = useState(" ");
 const [cityId, setCityId] = useState(0)
@@ -28,32 +24,6 @@ const [currencyName, setCurrencyName]= useState("");
 const [nativeCurrencyName, setNativeCurrencyName] = useState("");
 
 
-// const [sumWallet, setSumWallet] = useState(0);
-//add onlick wallet map or add a button
-// key needs to be added {item.id}
-// after onclick, create function getWalletId
-//update setWalletId hook
-//replace 34 by hookId 
-//add condition inside addExpense function to avoid new transaction without walletId
-
-// async function getCurrency(currency) {
-//     let currency_url = `https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=${currencyName}&to_currency=${nativeCurrencyName}&apikey=4E8ZBH6BEU83RWHA`;
-
-
-//     try {
-//     let response = await fetch(currency_url);
-//     if(response.ok) {
-//     let currencyResult = await response.json();
-//     let currency = currencyResult["Realtime Currency Exchange Rate"]["5. Exchange Rate"];
-//     setCurrency(currency)
-//     console.log(currency)
-//      } else {
-//     setError ("server error")
-//   }
-//     } catch (err) {
-//     setError("network error");
-//     }
-//     }
 
 const getWallets = () => {
   // console.log('hi')
@@ -94,6 +64,7 @@ const getWallets = () => {
       try {
         await fetch ("/expenses", options);
         getExpenses();
+        alert("New expense added!")
       } catch (err) {
         console.log("network error:" , err);
       }
@@ -109,6 +80,7 @@ const getWallets = () => {
         await fetch ("/wallets", options);
         console.log(wallets)
         getWallets();
+        alert("New wallet added!")
       } catch (err) {
         console.log("network error:" , err);
       }
@@ -147,45 +119,12 @@ useEffect(() => {
   }, []);
 
 
-// const sumWallet = () => {
-//   wallets.map (wallets => {
-//     expenses.map( expenses => {
-//       if(wallets.id === expenses.wallet_id) {
-//         let walletSum = 0;
-//         walletSum += expenses.amount;
-//         console.log(walletSum)
-//       }
-//     })
-//   })
-// }
-
-//component wallets - render in app js as a list
-//inside of wallets component - fetch get wallets 
-// display list of wallets - 
-//state called sum  to display later
-// create individual wallet component -> get all transactions -> loop through transactions and create function getSum, loop through transactions add it up together, setSum(total)
-//pass props 
-
-
-  
-  //First version
-//  wallets.map( wallet = () => {
-//   expenses.map( expense = () =>{
-//       //if wallet id  === expense wallet id
-//           //then wallet sum += expense sum
-         
-//   })
-//  }
-//   //display sum in a html tag
-//  )
-
-
-
   return (
     <Router> 
       <div className="App">
       <div className="travellet"> 
       <div className="menu"> 
+
       </div>
       
 
@@ -202,6 +141,17 @@ useEffect(() => {
           {/* <Route path ="/exchangerates"> <ExchangeRates currency={currency} /> </Route> */}
       </Switch>  
 
+      {/* Modal box  */}
+      <button id="myBtn">Open Modal</button>
+
+      <div id="myModal" className="modal">
+
+        <div className="modal-content">
+          <span className="close">&times;</span>
+          <p>New wallet added!</p>
+        </div>
+
+</div>
    
     </div>
     </div>
