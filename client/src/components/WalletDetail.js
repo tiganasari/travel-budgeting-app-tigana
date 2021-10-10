@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 
-// import NewTransaction from "./components/NewTransaction"; -> doesnt work, check path
-
 const WalletDetail = ({expenses, cityId, cityName , currencyName, nativeCurrencyName, currency, getCurrency}) => {
     const { id } = useParams();
     const [result, setResult] = useState([]);
@@ -10,12 +8,6 @@ const WalletDetail = ({expenses, cityId, cityName , currencyName, nativeCurrency
     const [sumCurrency, setSumCurrency] = useState(0);
     const [currencyRate, setCurrencyRate] = useState(0);
     
-    //Make call backend for the specific wallet 
-    //store currency and native in component
-    //make api call with currency and native
-    //setCurrency, etc
-    //display
-
     async function getCurrency(currency) {
     let currency_url = `https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=${currencyName}&to_currency=${nativeCurrencyName}&apikey=4E8ZBH6BEU83RWHA`;
 
@@ -109,8 +101,7 @@ const WalletDetail = ({expenses, cityId, cityName , currencyName, nativeCurrency
       </ul>
       </div>
        
-      {/* add new transaction here, insert component NewTransaction */}
-
+  
 
         </div>
     )

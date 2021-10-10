@@ -30,7 +30,6 @@ const getWallets = () => {
     fetch("/wallets")
       .then((response) => response.json())
       .then(json => {
-        // upon success, update tasks
         console.log(json);
         setWallets(json);
       })
@@ -44,7 +43,6 @@ const getWallets = () => {
     fetch("/expenses")
       .then((response) => response.json())
       .then(json => {
-        // upon success, update tasks
         console.log(json);
         setExpenses(json);
       })
@@ -112,10 +110,8 @@ const getWallets = () => {
 
 
 useEffect(() => {
-    // console.log("goodbye")
     getWallets();
     getExpenses();
-    // getCurrency();
 
   }, []);
 
@@ -131,15 +127,14 @@ useEffect(() => {
 
       <Switch>
           <Route path ="/" exact> <WalletList wallets={wallets} getCityId= {(id) => getCityId (id) } getCity={(name) => getCity(name)} walletId={walletId} getCurrencyName={(currency) => getCurrencyName (currency)} getNativeCurrencyName={(native) => getNativeCurrencyName (native)} /> </Route> 
-          {/* <Route path ="/walletdetail"> <WalletDetail expenses={expenses} /> </Route>  */}
-          
+  
           <Route path ="/walletdetail/:id"> <WalletDetail nativeCurrencyName ={nativeCurrencyName} currencyName ={currencyName} expenses={expenses} cityId={cityId} cityName={cityName} error={error} currency={currency}/> </Route> 
          
           <Route path ="/newwallet" > <NewWallet addWallet={(city, currency, native_currency, sum, sum_native_currency, user_id) => addWallet(city, currency, native_currency, sum, sum_native_currency, user_id)} /> </Route>
           
           <Route path ="/newtransaction"> <NewTransaction cityId={cityId} addExpense={(date, category, amount, mount_native_currency , notes, wallet_id) => addExpense(date, category, amount, mount_native_currency , notes, wallet_id)} /> </Route>
           
-          {/* <Route path ="/exchangerates"> <ExchangeRates currency={currency} /> </Route> */}
+          <Route path ="/exchangerates"> <ExchangeRates currency={currency} /> </Route>
       </Switch>  
 
       {/* Modal box  */}

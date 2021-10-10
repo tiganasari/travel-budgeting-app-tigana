@@ -22,7 +22,6 @@ export const NewTransaction = (props) => {
 
     return (
         <div className="add-transaction">
-          {/* Fix link to go to that specific wallet Id */}
         <div className="nav"> <p> <Link className="exp-nav" to={`/walletdetail/${props.cityId}`} > &lt; expenses </Link>
         </p> 
         </div>
@@ -48,17 +47,11 @@ export const NewTransaction = (props) => {
             <input type="text"
             onChange={(e) => handleInputChange(e)} name="amount" value= {formData.amount} placeholder="amount">
             </input>
-             {/* <input type="number"
-            onChange={(e) => handleInputChange(e)} name="amount_native_currency" value= {formData.amount_native_currency} placeholder="amount native currency">
-            </input> */}
-
-
+       
            <input type="notes"
             onChange={(e) => handleInputChange(e)} name="notes" value= {formData.notes} placeholder="notes">
             </input>
-            {/* <input type="number"
-            onChange={(e) => handleInputChange(e)} name="wallet_id" value= {formData.wallet_id} placeholder="wallet">
-            </input> */}
+          
             <div class="col text-center">
             <button className="btn btn-light new-button" onClick={handleSubmit} type ="submit">
             submit
