@@ -58,3 +58,4 @@ So many! Due to time constraints many app's initial intended features were not a
 4. Live currency rates with the ability to pick favourite rates (Drop down menu)
 5. Categories breakdown. Each transactions have a category assigned to it. A graph / chart should be implemented to enable user to view summary of category in their spending
 6. Map API to locate the nearest currency exchange places
+7. Web and mobile responsiveness

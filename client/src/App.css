@@ -105,6 +105,7 @@ li {
 .add-transaction h2 {
   margin: 20px;
   text-align: left;
+  margin-top: -5px;
 }
 
 .wallet-overview {
@@ -157,7 +158,7 @@ li {
   font-size: 18px;
   text-decoration: none;
   position: relative;
-  top: -60px;
+  top: -40px;
 }
 
 .menu-nav-exchange {
@@ -232,10 +233,13 @@ select {
 .cityName {
   margin-left: 20px;
   margin-bottom: 30px;
+  margin-top: -10px;
 }
 
 .exchange {
   margin-top: 20px;
+  text-align: left;
+  margin-left: 30px;
 }
 
 .exchange-display {
