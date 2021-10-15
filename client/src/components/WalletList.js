@@ -29,6 +29,8 @@ export const WalletList = (props) => {
               <Link className="link" to={`walletdetail/${i.id}`}>
             {i.city} | {i.currency} to {i.native_currency} 
               </Link>
+               
+              
             </li>)}
           </ul>
         </div>
@@ -41,6 +43,10 @@ export const WalletList = (props) => {
         <Link to="/exchangerates"> 
         <button className="btn btn-warning">Live exchange rates</button>
         </Link> 
+
+        
+
+
  
       </div>    
            

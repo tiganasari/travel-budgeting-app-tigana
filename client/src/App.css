@@ -61,7 +61,7 @@ ul {
 
 .wallet-list li {
   font-size: 12px;
-  padding: 5px;
+  padding: 5px 1px 5px 5px;
   background-color: rgb(201, 199, 199);
   color: white;
   width: 250px;
@@ -250,4 +250,36 @@ select {
   border-radius: 10px;
   padding: 10px;
   font-weight: bold;
+}
+
+.delete-icon {
+  color: #ffc107;
+}
+
+.button-delete button {
+  background-color: rgb(234, 234, 234);
+  padding-left: 275px;
+  border: none;
+}
+
+.delete-icon:hover {
+  color: rgba(40, 148, 58, 0.973);
+}
+
+.button-delete .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: rgba(40, 148, 58, 0.973);
+  color: white;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.button-delete:hover .tooltiptext {
+  visibility: visible;
 }
