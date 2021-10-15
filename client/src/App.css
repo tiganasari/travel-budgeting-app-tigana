@@ -270,6 +270,7 @@ select {
   visibility: hidden;
   width: 120px;
   background-color: rgba(40, 148, 58, 0.973);
+  opacity: 50%;
   color: white;
   text-align: center;
   border-radius: 6px;
@@ -282,4 +283,14 @@ select {
 
 .button-delete:hover .tooltiptext {
   visibility: visible;
+}
+
+.trans-icon {
+  opacity: 1%;
+  color: rgba(40, 148, 58, 0.973);
+}
+
+.trans-icon:hover {
+  /* visibility: visible; */
+  opacity: 100%;
 }

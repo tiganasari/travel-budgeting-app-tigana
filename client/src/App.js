@@ -81,11 +81,13 @@ const getWallets = () => {
         console.log(wallets)
         getWallets();
         alert("New wallet added!");
-        history.push("/");
-        history.go(0);
+        // history.push("/");
+        // history.go(0);
+        
       } catch (err) {
         console.log("network error:" , err);
       }
+     
   }
 
   const getCity = (name) => {
