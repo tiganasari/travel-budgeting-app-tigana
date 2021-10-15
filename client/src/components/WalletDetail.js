@@ -65,15 +65,19 @@ const WalletDetail = ({expenses, cityId, cityName , currencyName, nativeCurrency
 
     let history = useHistory();
 
-    const onSelectTrans = (id) =>{
-      console.log(id);
-      fetch(`/expenses/${id}`, {
+    const onSelectTrans = (TransId) =>{
+      console.log(TransId);
+      fetch(`/expenses/${TransId}`, {
       method: "DELETE"
     })
     .then((response) => response.json())
       .then(json => {
-        console.log(json);
         alert("Transaction deleted!");
+        // history.push("/walletdetail/65");
+        // history.go(0)
+        getTransactions(id)
+  
+        
       })
       .catch((error) => {
         console.log(error);
@@ -104,7 +108,6 @@ const WalletDetail = ({expenses, cityId, cityName , currencyName, nativeCurrency
     getTransactions(id);
     sumWallet();
     sumWalletCurrency();
-    console.log(currency)
     getCurrency();
   }, []);
 
