@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useHistory } from 'react-router-dom';
 
 const WalletDetail = ({expenses, cityId, cityName , currencyName, nativeCurrencyName, currency, getCurrency}) => {
     const { id } = useParams();
@@ -8,6 +8,8 @@ const WalletDetail = ({expenses, cityId, cityName , currencyName, nativeCurrency
     const [sumCurrency, setSumCurrency] = useState(0);
     const [currencyRate, setCurrencyRate] = useState(0);
     
+    
+
     async function getCurrency(currency) {
     let currency_url = `https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=${currencyName}&to_currency=${nativeCurrencyName}&apikey=4E8ZBH6BEU83RWHA`;
 
@@ -61,6 +63,8 @@ const WalletDetail = ({expenses, cityId, cityName , currencyName, nativeCurrency
 
     }
 
+    let history = useHistory();
+
     const onSelectDelete = (id) => {
       console.log(id);
       fetch(`/wallets/${id}`, {
@@ -70,13 +74,14 @@ const WalletDetail = ({expenses, cityId, cityName , currencyName, nativeCurrency
       .then(json => {
         console.log(json);
         alert("Wallet deleted!");
-
-        
+        history.push("/");
+        history.go(0);
       })
       .catch((error) => {
         console.log(error);
       });
     }
+
 
   useEffect(() => {
     getTransactions(id);

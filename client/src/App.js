@@ -5,11 +5,12 @@ import NewWallet from "./components/NewWallet";
 import NewTransaction from "./components/NewTransaction";
 import WalletList from "./components/WalletList";
 import ExchangeRates from "./components/ExchangeRates";
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 require('react-dom');
 window.React2 = require('react');
 console.log(window.React1 === window.React2);
+
 
 function App() {
 
@@ -67,17 +68,21 @@ const getWallets = () => {
         console.log("network error:" , err);
       }
   }
+  let history = useHistory();
+
   const addWallet = async (city, currency, native_currency, sum, sum_native_currency, user_id) => {
     let wallet = { city, currency, native_currency, sum, sum_native_currency, user_id};
     let options = { method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(wallet)};
-
+     
       try {
         await fetch ("/wallets", options);
         console.log(wallets)
         getWallets();
-        alert("New wallet added!")
+        alert("New wallet added!");
+        history.push("/");
+        history.go(0);
       } catch (err) {
         console.log("network error:" , err);
       }
