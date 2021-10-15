@@ -13,6 +13,9 @@ export const WalletList = (props) => {
     props.getNativeCurrencyName(native)
   
   }
+
+
+  
   useEffect(() => {
     
   }, []);

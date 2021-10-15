@@ -68,7 +68,6 @@ const getWallets = () => {
       }
   }
   const addWallet = async (city, currency, native_currency, sum, sum_native_currency, user_id) => {
-    
     let wallet = { city, currency, native_currency, sum, sum_native_currency, user_id};
     let options = { method: "POST",
       headers: { "Content-Type": "application/json" },
