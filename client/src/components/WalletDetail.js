@@ -68,10 +68,10 @@ const WalletDetail = ({expenses, cityId, cityName , currencyName, nativeCurrency
     })
     .then((response) => response.json())
       .then(json => {
-        // upon success, update tasks
         console.log(json);
-        setResult(json);
-        alert("Wallet deleted!")
+        alert("Wallet deleted!");
+
+        
       })
       .catch((error) => {
         console.log(error);
