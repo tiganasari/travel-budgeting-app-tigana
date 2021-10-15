@@ -35,7 +35,7 @@ export const WalletList = (props) => {
 
       <div className="wallet-buttons">
         <Link to="/newwallet"> 
-        <button className="btn btn-success">Add a new Wallet</button>
+        <button className="btn btn-success">Add a new wallet</button>
         </Link>
 
         <Link to="/exchangerates"> 
