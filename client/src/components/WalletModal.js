@@ -4,9 +4,12 @@ export const WalletModal = ({closeModal}) => {
     return (
         <div className="modal-background">
             <div className="modal-container">
+                <div className="close-modal" >
                 <button onClick={() => closeModal(false)}> x </button>
-                <div className="modal-content"></div>
-                <p>New Wallet is created!</p>
+                </div>
+                <div className="modal-content">
+                <p>New wallet created!</p>
+                </div>
             </div>
             
         </div>
