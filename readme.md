@@ -88,7 +88,7 @@ Wallet Detail:
 
 So many! Due to time constraints many app's initial intended features were not able to be implemented.
 
-1. Delete button - to delete wallet and transactions
+1. Delete button - to delete wallet and transactions | _this has been added_
 2. Update/modify transactions or wallet
 3. Sum of wallet in the wallet list as a quick reminder for user.
 4. Live currency rates with the ability to pick favourite rates (Drop down menu)

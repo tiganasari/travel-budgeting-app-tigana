@@ -5,8 +5,10 @@ import NewWallet from "./components/NewWallet";
 import NewTransaction from "./components/NewTransaction";
 import WalletList from "./components/WalletList";
 import ExchangeRates from "./components/ExchangeRates";
+import WalletModal from "./components/WalletModal";
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 require('react-dom');
 window.React2 = require('react');
 console.log(window.React1 === window.React2);
@@ -23,7 +25,7 @@ const [cityName, setCityName] = useState(" ");
 const [cityId, setCityId] = useState(0)
 const [currencyName, setCurrencyName]= useState("");
 const [nativeCurrencyName, setNativeCurrencyName] = useState("");
-
+const [openWalletModal, setOpenWalletModal] = useState(false);
 
 
 const getWallets = () => {
@@ -80,7 +82,9 @@ const getWallets = () => {
         await fetch ("/wallets", options);
         console.log(wallets)
         getWallets();
-        alert("New wallet added!");
+        // alert("New wallet added!");
+        setOpenWalletModal(true);
+
         // history.push("/");
         // history.go(0);
         
@@ -143,7 +147,7 @@ useEffect(() => {
           <Route path ="/exchangerates"> <ExchangeRates currency={currency} /> </Route>
       </Switch>  
 
-      {/* Modal box  */}
+      { openWalletModal && <WalletModal closeModal={setOpenWalletModal}/> }
      
    
     </div>

@@ -53,8 +53,7 @@ export const NewWallet = (props) => {
             submit
             </button>
             </div>
-            </form>
-            
+            </form> 
            
         </div>
     )
