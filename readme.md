@@ -18,10 +18,15 @@ Currently a single user application (Tigana) but in the future the database has 
 
 1. Create a dabatase called 'expenses' on mysql - command: CREATE DATABASE expense;
 2. Create .env file and fill in all details:
+
    DB_HOST = localhost
+
    DB_USER = root
+
    DB_PASS = **enter your own password**
+
    DB_NAME = expenses
+
 3. Create your .gitignore file and include your .env and node_modules/ files
 4. Go to my express app. On the terminal: $ cd my-express-app/
 5. $ yarn
