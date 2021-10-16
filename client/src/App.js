@@ -6,6 +6,7 @@ import NewTransaction from "./components/NewTransaction";
 import WalletList from "./components/WalletList";
 import ExchangeRates from "./components/ExchangeRates";
 import WalletModal from "./components/WalletModal";
+import TransactionModal from "./components/TransactionModal";
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -26,6 +27,7 @@ const [cityId, setCityId] = useState(0)
 const [currencyName, setCurrencyName]= useState("");
 const [nativeCurrencyName, setNativeCurrencyName] = useState("");
 const [openWalletModal, setOpenWalletModal] = useState(false);
+const [openTransModal, setOpenTransModal] = useState(false);
 
 
 const getWallets = () => {
@@ -65,7 +67,7 @@ const getWallets = () => {
       try {
         await fetch ("/expenses", options);
         getExpenses();
-        alert("New expense added!")
+         setOpenTransModal(true);
       } catch (err) {
         console.log("network error:" , err);
       }
@@ -148,6 +150,7 @@ useEffect(() => {
       </Switch>  
 
       { openWalletModal && <WalletModal closeModal={setOpenWalletModal}/> }
+      { openTransModal && <TransactionModal closeTransModal={setOpenTransModal}/> }
      
    
     </div>
