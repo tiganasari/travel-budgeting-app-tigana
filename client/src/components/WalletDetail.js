@@ -52,17 +52,13 @@ const WalletDetail = ({expenses, cityId, cityName , currencyName, nativeCurrency
           }
           setSumTrans(sum.toFixed(2));
     }
-
     const sumWalletCurrency = () => {
         let sum= 0;
         sum = sumTrans * currency;
-        setSumCurrency(sum);
-        
+        setSumCurrency(sum);  
     }
     const onSelectItem = () => {
-
     }
-
     let history = useHistory();
 
     const onSelectTrans = (TransId) =>{
@@ -72,10 +68,8 @@ const WalletDetail = ({expenses, cityId, cityName , currencyName, nativeCurrency
     })
     .then((response) => response.json())
       .then(json => {
-        alert("Transaction deleted!");
-        // history.push("/walletdetail/65");
-        // history.go(0)
-        getTransactions(id)
+        getTransactions(id);
+        sumWallet();
   
         
       })

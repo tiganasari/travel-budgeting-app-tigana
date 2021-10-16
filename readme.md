@@ -12,6 +12,27 @@ The app is mobile first application, built in React with Mysql database and usin
 
 Currently a single user application (Tigana) but in the future the database has been set up for login and authentications for different users and the Live exchange rates will be tailored according to the user's native currency.
 
+## Installation Guide
+
+**Database migration**
+
+1. Create a dabatase called 'expenses' on mysql - command: CREATE DATABASE expense;
+2. Create .env file and fill in all details:
+   DB_HOST = localhost
+   DB_USER = root
+   DB_PASS = **enter your own password**
+   DB_NAME = expenses
+3. Create your .gitignore file and include your .env and node_modules/ files
+4. Go to my express app. On the terminal: $ cd my-express-app/
+5. $ yarn
+6. $ yarn migrate
+
+**Front end**
+
+1. On the project terminal $ cd client
+2. $ yarn (to install dependencies)
+3. Once installed $ yarn start
+
 ## Application Elements
 
 1. Wallet
@@ -30,13 +51,23 @@ Created using DB Designer - please note that the following modification was made
 - User table were created but not yet used (will be used in the next phase)
 - Native currency in the user table is now being stored in wallet table
 
-<img src="DB-schema.png">
+<img src="images/DB-schema.png">
 
 ## Initial User flow diagram
 
 Created using Invision App.
 
-<img src="user-flow.png">
+<img src="images/user-flow.png">
+
+## User Interface
+
+Wallet List:
+
+<img src="images/wallet-list.png">
+
+Wallet Detail:
+
+<img src="images/wallet-detail.png">
 
 ## Challenges
 
