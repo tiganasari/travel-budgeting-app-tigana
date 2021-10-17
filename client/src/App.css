@@ -307,8 +307,9 @@ select {
 .modal-container {
   border: none;
   border-radius: 10px;
-  height: 20%;
-  width: 30%;
+  height: 150px;
+  width: 255px;
+  padding: 0 10px;
   margin: 0 auto;
   margin-top: 180px;
   background-color: rgba(40, 148, 58, 0.973);
