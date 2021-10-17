@@ -120,6 +120,23 @@ const getWallets = () => {
   }
 
 
+  const deleteWallet = (id) => {
+    console.log(id);
+    fetch(`/wallets/${id}`, {
+      method: "DELETE"
+    })
+    .then((response) => response.json())
+      .then(json => {
+        console.log(json);
+        alert("Wallet deleted!");
+        history.push("/");
+        history.go(0);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+  }
 
 useEffect(() => {
     getWallets();
@@ -140,7 +157,7 @@ useEffect(() => {
       <Switch>
           <Route path ="/" exact> <WalletList wallets={wallets} getCityId= {(id) => getCityId (id) } getCity={(name) => getCity(name)} walletId={walletId} getCurrencyName={(currency) => getCurrencyName (currency)} getNativeCurrencyName={(native) => getNativeCurrencyName (native)} /> </Route> 
   
-          <Route path ="/walletdetail/:id"> <WalletDetail nativeCurrencyName ={nativeCurrencyName} currencyName ={currencyName} expenses={expenses} cityId={cityId} cityName={cityName} error={error} currency={currency}/> </Route> 
+          <Route path ="/walletdetail/:id"> <WalletDetail nativeCurrencyName ={nativeCurrencyName} currencyName ={currencyName} expenses={expenses} cityId={cityId} cityName={cityName} error={error} currency={currency} deleteWallet={deleteWallet}/> </Route> 
          
           <Route path ="/newwallet" > <NewWallet addWallet={(city, currency, native_currency, sum, sum_native_currency, user_id) => addWallet(city, currency, native_currency, sum, sum_native_currency, user_id)} /> </Route>
           

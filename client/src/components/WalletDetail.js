@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useHistory } from 'react-router-dom';
 
-const WalletDetail = ({expenses, cityId, cityName , currencyName, nativeCurrencyName, currency, getCurrency}) => {
+const WalletDetail = ({expenses, cityId, cityName , currencyName, nativeCurrencyName, currency, getCurrency, deleteWallet}) => {
     const { id } = useParams();
     const [result, setResult] = useState([]);
     const [sumTrans, setSumTrans] = useState(0);
@@ -80,23 +80,28 @@ const WalletDetail = ({expenses, cityId, cityName , currencyName, nativeCurrency
 
     
 
-    const onSelectDelete = (id) => {
-      console.log(id);
-      fetch(`/wallets/${id}`, {
-      method: "DELETE"
-    })
-    .then((response) => response.json())
-      .then(json => {
-        console.log(json);
-        alert("Wallet deleted!");
-        history.push("/");
-        history.go(0)
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    }
+    // const onSelectDelete = (id) => {
+    //   console.log(id);
+    //   fetch(`/wallets/${id}`, {
+    //   method: "DELETE"
+    // })
+    // .then((response) => response.json())
+    //   .then(json => {
+    //     console.log(json);
+    //     alert("Wallet deleted!");
+    //     history.push("/");
+    //     history.go(0)
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+    // }
 
+
+    const onSelectDelete = (id) => {
+      deleteWallet (id);
+
+    }
 
   useEffect(() => {
     getTransactions(id);
