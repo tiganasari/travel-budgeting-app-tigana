@@ -308,7 +308,7 @@ select {
   border: none;
   border-radius: 10px;
   height: 150px;
-  width: 255px;
+  width: 285px;
   padding: 0 10px;
   margin: 0 auto;
   margin-top: 180px;
@@ -335,4 +335,13 @@ select {
 .modal-content {
   background-color: rgba(40, 148, 58, 0.973) !important;
   border: none !important;
+}
+
+.delete-modal {
+  background-color: #ffc107 !important;
+  color: rgba(40, 148, 58, 0.973);
+}
+
+.delete-content {
+  background-color: #ffc107 !important;
 }

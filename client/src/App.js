@@ -7,6 +7,7 @@ import WalletList from "./components/WalletList";
 import ExchangeRates from "./components/ExchangeRates";
 import WalletModal from "./components/WalletModal";
 import TransactionModal from "./components/TransactionModal";
+import DeleteModal from "./components/DeleteModal";
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -28,6 +29,7 @@ const [currencyName, setCurrencyName]= useState("");
 const [nativeCurrencyName, setNativeCurrencyName] = useState("");
 const [openWalletModal, setOpenWalletModal] = useState(false);
 const [openTransModal, setOpenTransModal] = useState(false);
+const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
 
 const getWallets = () => {
@@ -119,7 +121,10 @@ const getWallets = () => {
 
   }
 
-
+  function refreshPage() {
+    window.location.href= '/'
+  }
+  
   const deleteWallet = (id) => {
     console.log(id);
     fetch(`/wallets/${id}`, {
@@ -128,9 +133,11 @@ const getWallets = () => {
     .then((response) => response.json())
       .then(json => {
         console.log(json);
-        alert("Wallet deleted!");
-        history.push("/");
-        history.go(0);
+        setOpenDeleteModal(true);
+        refreshPage();
+      
+        // history.push("/");
+        // history.go(0);
       })
       .catch((error) => {
         console.log(error);
@@ -168,6 +175,7 @@ useEffect(() => {
 
       { openWalletModal && <WalletModal closeModal={setOpenWalletModal}/> }
       { openTransModal && <TransactionModal closeTransModal={setOpenTransModal}/> }
+      { openDeleteModal && <DeleteModal closeDeleteModal={setOpenDeleteModal}/> }
      
    
     </div>
