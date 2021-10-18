@@ -13,7 +13,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 require('react-dom');
 window.React2 = require('react');
-console.log(window.React1 === window.React2);
+// console.log(window.React1 === window.React2);
 
 
 function App() {
@@ -37,7 +37,7 @@ const getWallets = () => {
     fetch("/wallets")
       .then((response) => response.json())
       .then(json => {
-        console.log(json);
+        // console.log(json);
         setWallets(json);
       })
       .catch((error) => {
@@ -50,7 +50,7 @@ const getWallets = () => {
     fetch("/expenses")
       .then((response) => response.json())
       .then(json => {
-        console.log(json);
+        // console.log(json);
         setExpenses(json);
       })
       .catch((error) => {
@@ -124,6 +124,8 @@ const getWallets = () => {
   function refreshPage() {
     window.location.href= '/'
   }
+
+
   
   const deleteWallet = (id) => {
     console.log(id);
@@ -134,10 +136,12 @@ const getWallets = () => {
       .then(json => {
         console.log(json);
         setOpenDeleteModal(true);
-        refreshPage();
-      
+        setTimeout(() => {
+        refreshPage()
+        }, 1000);
+        
         // history.push("/");
-        // history.go(0);
+        
       })
       .catch((error) => {
         console.log(error);
@@ -164,7 +168,7 @@ useEffect(() => {
       <Switch>
           <Route path ="/" exact> <WalletList wallets={wallets} getCityId= {(id) => getCityId (id) } getCity={(name) => getCity(name)} walletId={walletId} getCurrencyName={(currency) => getCurrencyName (currency)} getNativeCurrencyName={(native) => getNativeCurrencyName (native)} /> </Route> 
   
-          <Route path ="/walletdetail/:id"> <WalletDetail nativeCurrencyName ={nativeCurrencyName} currencyName ={currencyName} expenses={expenses} cityId={cityId} cityName={cityName} error={error} currency={currency} deleteWallet={deleteWallet}/> </Route> 
+          <Route path ="/walletdetail/:id"> <WalletDetail nativeCurrencyName ={nativeCurrencyName} currencyName ={currencyName} expenses={expenses} cityId={cityId} cityName={cityName} error={error} currency={currency} deleteWallet={deleteWallet} getExpenses={(id) => getExpenses(id)}/> </Route> 
          
           <Route path ="/newwallet" > <NewWallet addWallet={(city, currency, native_currency, sum, sum_native_currency, user_id) => addWallet(city, currency, native_currency, sum, sum_native_currency, user_id)} /> </Route>
           

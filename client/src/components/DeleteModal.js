@@ -5,7 +5,7 @@ export const DeleteModal = ({closeDeleteModal}) => {
         <div className="modal-background">
             <div className="modal-container delete-modal">
                 <div className="close-modal" >
-                <button onClick={() => closeDeleteModal(false)}> x </button>
+                {/* <button onClick={() => closeDeleteModal(false)}> x </button> */}
                 </div>
                 <div className="modal-content delete-content">
                 <p>Wallet deleted!</p>

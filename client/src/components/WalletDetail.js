@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useHistory } from 'react-router-dom';
 
-const WalletDetail = ({expenses, cityId, cityName , currencyName, nativeCurrencyName, currency, getCurrency, deleteWallet}) => {
+const WalletDetail = ({expenses, cityId, cityName , currencyName, nativeCurrencyName, currency, getCurrency, deleteWallet, getExpenses}) => {
     const { id } = useParams();
     const [result, setResult] = useState([]);
     const [sumTrans, setSumTrans] = useState(0);
@@ -9,7 +9,9 @@ const WalletDetail = ({expenses, cityId, cityName , currencyName, nativeCurrency
     const [currencyRate, setCurrencyRate] = useState(0);
     
     
-
+    function refreshPage() {
+    window.location.reload();
+    }
     async function getCurrency(currency) {
     let currency_url = `https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=${currencyName}&to_currency=${nativeCurrencyName}&apikey=4E8ZBH6BEU83RWHA`;
 
@@ -68,11 +70,20 @@ const WalletDetail = ({expenses, cityId, cityName , currencyName, nativeCurrency
     })
     .then((response) => response.json())
       .then(json => {
-        getTransactions(id);
-        sumWallet();
-  
+   
+        // refreshPage();
+        // console.log(cityId);
         
-      })
+        getTransactions(id);
+        // getExpenses();
+        
+      },
+      getExpenses(),
+      sumWallet(),
+      console.log(sumTrans),
+      
+      
+      )
       .catch((error) => {
         console.log(error);
       });
