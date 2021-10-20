@@ -154,7 +154,7 @@ const getWallets = () => {
         setOpenDeleteModal(true);
         setTimeout(() => {
         refreshPageWallet()
-        }, 1000);
+        }, 1500);
         
         // history.push("/");
         

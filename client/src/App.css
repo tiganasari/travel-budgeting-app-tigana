@@ -337,12 +337,12 @@ select {
   border: none !important;
 }
 
-.delete-modal {
+/* .delete-modal {
   background-color: #ffc107 !important;
   color: rgba(40, 148, 58, 0.973);
 }
+ */
 
 .delete-content {
-  background-color: #ffc107 !important;
-  padding-top: 55px;
+  padding-top: 60px;
 }
