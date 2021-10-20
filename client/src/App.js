@@ -30,6 +30,8 @@ const [nativeCurrencyName, setNativeCurrencyName] = useState("");
 const [openWalletModal, setOpenWalletModal] = useState(false);
 const [openTransModal, setOpenTransModal] = useState(false);
 const [openDeleteModal, setOpenDeleteModal] = useState(false);
+const [sumTrans, setSumTrans] = useState(0);
+ const [result, setResult] = useState([]);
 
 
 const getWallets = () => {
@@ -58,7 +60,18 @@ const getWallets = () => {
       });
   };
 
-
+     const getTransactions = (cityId) => {
+      fetch(`/expenses/${cityId}`)
+      .then((response) => response.json())
+      .then(json => {
+        // upon success, update tasks
+        console.log(json);
+        setResult(json);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }
 
   const addExpense = async (date, category, amount, amount_native_currency, notes, wallet_id) => {
     let expense = {date, category, amount, amount_native_currency, notes, wallet_id};
@@ -121,10 +134,13 @@ const getWallets = () => {
 
   }
 
-  function refreshPage() {
+  function refreshPageWallet() {
     window.location.href= '/'
   }
 
+    function refreshPage() {
+    window.location.reload();
+  }
 
   
   const deleteWallet = (id) => {
@@ -137,7 +153,7 @@ const getWallets = () => {
         console.log(json);
         setOpenDeleteModal(true);
         setTimeout(() => {
-        refreshPage()
+        refreshPageWallet()
         }, 1000);
         
         // history.push("/");
@@ -149,9 +165,52 @@ const getWallets = () => {
 
   }
 
+    const deleteTransaction = async (idTransaction) => {
+    let options = { method: "DELETE"};
+      try {
+         await fetch (`/expenses/${idTransaction}`, options);
+         console.log("string")
+         getExpenses();
+        //  alert("Expense removed!")
+      } catch (err) {
+        console.log("network error:" , err);
+      }
+  }
+    //  const sumWallet = () => {
+    //     let sum = 0;
+    //     for (let i=0; i < expenses.length; i++) {
+    //       if(expenses[i].wallet_id == cityId) {
+    //       sum += Number(expenses[i].amount);
+    //     }
+    //       }
+    //       setSumTrans(sum.toFixed(2));
+    // }
+
+    // const deleteTrans = (id) => {
+    //   console.log(id)
+    //   fetch(`/expenses/${id}`, {
+    //   method: "DELETE"
+    // })
+  
+    //   .then( () => {
+    //   // refreshPage()
+    //   console.log(walletId);
+    //   getTransactions(walletId);
+    //   getExpenses();
+    //   sumWallet();
+    //   console.log(sumTrans)
+    
+        
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+    // }
+
 useEffect(() => {
     getWallets();
     getExpenses();
+    // getTransactions();
 
   }, []);
 
@@ -168,7 +227,8 @@ useEffect(() => {
       <Switch>
           <Route path ="/" exact> <WalletList wallets={wallets} getCityId= {(id) => getCityId (id) } getCity={(name) => getCity(name)} walletId={walletId} getCurrencyName={(currency) => getCurrencyName (currency)} getNativeCurrencyName={(native) => getNativeCurrencyName (native)} /> </Route> 
   
-          <Route path ="/walletdetail/:id"> <WalletDetail nativeCurrencyName ={nativeCurrencyName} currencyName ={currencyName} expenses={expenses} cityId={cityId} cityName={cityName} error={error} currency={currency} deleteWallet={deleteWallet} getExpenses={(id) => getExpenses(id)}/> </Route> 
+          <Route path ="/walletdetail/:id"> <WalletDetail nativeCurrencyName ={nativeCurrencyName} currencyName ={currencyName} expenses={expenses} cityId={cityId} cityName={cityName} error={error} currency={currency} deleteWallet={deleteWallet} getExpenses={(id) => getExpenses(id)} 
+          deleteTransaction={(id) => deleteTransaction(id)}/> </Route> 
          
           <Route path ="/newwallet" > <NewWallet addWallet={(city, currency, native_currency, sum, sum_native_currency, user_id) => addWallet(city, currency, native_currency, sum, sum_native_currency, user_id)} /> </Route>
           
