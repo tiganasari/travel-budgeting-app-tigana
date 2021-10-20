@@ -98,7 +98,7 @@ export const ExchangeRates = () => {
     getCurrency();
     getCurrency2();
     getCurrency3();
-    getCurrency4();
+    // getCurrency4();
 
   }, []);
 
@@ -114,10 +114,45 @@ export const ExchangeRates = () => {
         <p> 1 GBP = {liveCurrency1} USD </p>
         <p> 1 GBP = {liveCurrency2} EUR </p>
         <p> 1 GBP = {liveCurrency3} IDR </p>
-        <p> 1 GBP = {liveCurrency4} JPY </p>
+        {/* <p> 1 GBP = {liveCurrency4} JPY </p> */}
         </div>
-   
+        
+        <div className="calculator">
+        <h4> Quick Currency Calculator </h4>
+        
+
+        <form className="form">  
+            <p>Convert</p>
+            <div className="calculator-currency">  
+            <select className="currency" id="currency" name="currency" > 
+            <option value={"GBP"}>Poundsterling</option>
+            <option value={"EUR"}>Euros</option>
+            <option value={"USD"}>Dollars</option>
+            <option value={"IDR"}>Rupiah</option>
+            </select>
+            </div>
+            <input type="text"
+            name="amount" placeholder="amount">
+            </input>
+            <p>to</p>
+            <div className="calculator-currency">
+            <select className="native-currency" id="native_currency" name="native_currency" > 
+            <option value={"GBP"}>Poundsterling</option>
+            <option value={"EUR"}>Euros</option>
+            <option value={"USD"}>Dollars</option>
+            <option value={"IDR"}>Rupiah</option>
+            </select>
+            </div>
+            <div class="col text-center">
+            <button className=" btn btn-light new-button"  type ="submit">
+            submit
+            </button>
+            </div>
+            </form> 
         </div>
+        </div>
+
+        
     )
 }
 
