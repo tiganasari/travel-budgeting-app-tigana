@@ -114,15 +114,21 @@ export const ExchangeRates = () => {
         <p> 1 GBP = {liveCurrency1} USD </p>
         <p> 1 GBP = {liveCurrency2} EUR </p>
         <p> 1 GBP = {liveCurrency3} IDR </p>
-        {/* <p> 1 GBP = {liveCurrency4} JPY </p> */}
+        <p> 1 GBP = {liveCurrency4} JPY </p>
         </div>
         
-        <div className="calculator">
+        <div className="more-currency">
+            <a href="https://www.xe.com/" className="btn btn-success more"  target="_blank">More currency</a>
+        </div>
+        {/* <div className="calculator">
         <h4> Quick Currency Calculator </h4>
         
 
-        <form className="form">  
+        <form className="calculator-form">  
             <p>Convert</p>
+            <input type="text"
+            name="amount" className="amount" placeholder="amount">
+            </input>
             <div className="calculator-currency">  
             <select className="currency" id="currency" name="currency" > 
             <option value={"GBP"}>Poundsterling</option>
@@ -131,9 +137,7 @@ export const ExchangeRates = () => {
             <option value={"IDR"}>Rupiah</option>
             </select>
             </div>
-            <input type="text"
-            name="amount" placeholder="amount">
-            </input>
+          
             <p>to</p>
             <div className="calculator-currency">
             <select className="native-currency" id="native_currency" name="native_currency" > 
@@ -142,6 +146,7 @@ export const ExchangeRates = () => {
             <option value={"USD"}>Dollars</option>
             <option value={"IDR"}>Rupiah</option>
             </select>
+            <h3>USD 433.20</h3>
             </div>
             <div class="col text-center">
             <button className=" btn btn-light new-button"  type ="submit">
@@ -149,7 +154,7 @@ export const ExchangeRates = () => {
             </button>
             </div>
             </form> 
-        </div>
+        </div> */}
         </div>
 
         

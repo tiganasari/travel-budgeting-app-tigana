@@ -162,7 +162,7 @@ li {
 }
 
 .menu-nav-exchange {
-  top: -110px;
+  top: -100px;
   left: 20px;
 }
 
@@ -204,6 +204,18 @@ select {
   margin-bottom: 20px;
 }
 
+.amount {
+  border-radius: 10px !important;
+  border: transparent;
+  height: 40px;
+  margin: 10px;
+  text-align: center;
+  background-color: rgba(240, 240, 240, 0.973);
+}
+
+.amount ::placeholder {
+  color: red;
+}
 .form select {
   margin: 0 auto;
   margin-bottom: 20px;
@@ -345,4 +357,25 @@ select {
 
 .delete-content {
   padding-top: 60px;
+}
+
+.calculator {
+  border: 1px solid black;
+}
+
+.calculator form {
+  border: 1px solid red;
+  text-align: center;
+}
+
+.calculator-currency select {
+  margin: 0 auto;
+}
+
+.more-currency {
+  margin-top: 30px;
+}
+
+.more {
+  font-weight: bolder !important;
 }
