@@ -7,7 +7,7 @@
   "scripts": {
     "start": "nodemon ./bin/www",
     "migrate" : "node model/database.js",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "heroku-postbuild": "cd .. cd client && npm install && npm run build"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",

@@ -20,6 +20,9 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/wallets', walletsRouter);
 app.use('/expenses', expensesRouter);
-app.use(express.static(path.join(__dirname, "client/build")));
+app.use(express.static(path.join(__dirname, "../client/build")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "../client/build/index.html"));
+});
 
 module.exports = app;
